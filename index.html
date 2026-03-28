@@ -3,255 +3,403 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Madtown Power Cleaning Services | Madison, WI | (608) 280-1271</title>
-<meta name="description" content="Professional cleaning services in Madison, WI. Residential, commercial, deep cleaning, move-in/out. Call (608) 280-1271. Open 8AM–8PM daily."/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<title>Madtown Power Cleaning | Madison, WI | (608) 280-1271</title>
+<meta name="description" content="Elite professional cleaning services in Madison, WI. Residential, commercial, deep cleaning, move-in/out. Call (608) 280-1271."/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --black:#0a0a0a;
-  --white:#fafaf7;
-  --blue:#1a6cf5;
-  --blue-dark:#1050c8;
-  --blue-light:#e8f0ff;
-  --gray:#6b6b6b;
-  --light:#f0efe9;
-  --border:rgba(10,10,10,0.12);
+  --ink:#04050a;
+  --ink2:#080c16;
+  --ink3:#0d1222;
+  --steel:#111827;
+  --white:#f8f9ff;
+  --dim:#a0a8c0;
+  --blue:#2563eb;
+  --blue2:#1d4ed8;
+  --cyan:#06b6d4;
+  --electric:#38bdf8;
+  --gold:#f59e0b;
+  --gold2:#d97706;
+  --glow:rgba(37,99,235,.35);
+  --glow2:rgba(6,182,212,.2);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--white);color:var(--black);font-family:'Instrument Sans',sans-serif;cursor:none;overflow-x:hidden;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--ink);
+  color:var(--white);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
 
-/* CURSOR */
-.cursor{position:fixed;width:12px;height:12px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,width .2s,height .2s;mix-blend-mode:multiply;}
-.cursor-ring{position:fixed;width:40px;height:40px;border:1.5px solid var(--black);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s ease,width .25s,height .25s;}
+/* ── CUSTOM CURSOR ── */
+#cur{position:fixed;width:10px;height:10px;background:var(--electric);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:screen;}
+#cur-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(56,189,248,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;animation:ring-pulse 3s ease-in-out infinite;}
+@keyframes ring-pulse{0%,100%{border-color:rgba(56,189,248,.3)}50%{border-color:rgba(56,189,248,.7)}}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3rem;background:rgba(250,250,247,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.08em;color:var(--black);text-decoration:none;}
-.nav-logo span{color:var(--blue);}
+/* ── NOISE OVERLAY ── */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.028;pointer-events:none;z-index:9997;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent;}
+nav.scrolled{background:rgba(4,5,10,.85);backdrop-filter:blur(20px);border-color:rgba(37,99,235,.15);}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;letter-spacing:.04em;text-decoration:none;color:var(--white);}
+.nav-logo span{color:var(--electric);}
 .nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none;}
-.nav-links a{text-decoration:none;color:var(--gray);font-size:.85rem;font-weight:500;letter-spacing:.03em;transition:color .2s;}
-.nav-links a:hover{color:var(--black);}
-.nav-cta{background:var(--black)!important;color:var(--white)!important;padding:.55rem 1.3rem!important;font-size:.8rem!important;transition:background .2s!important;}
-.nav-cta:hover{background:var(--blue)!important;color:var(--white)!important;}
-.hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;}
-.hamburger span{display:block;width:22px;height:1.5px;background:var(--black);}
-.mobile-menu{display:none;background:var(--white);border-top:1px solid var(--border);position:fixed;top:64px;left:0;right:0;z-index:99;}
+.nav-links a{color:var(--dim);font-size:.83rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--white);}
+.nav-cta{background:var(--blue)!important;color:var(--white)!important;padding:.55rem 1.4rem!important;font-size:.78rem!important;letter-spacing:.08em!important;text-transform:uppercase!important;font-weight:600!important;transition:background .2s,transform .15s!important;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+.nav-cta:hover{background:var(--cyan)!important;color:var(--ink)!important;transform:translateY(-1px)!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:all .3s;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(4,5,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(37,99,235,.15);z-index:499;}
 .mobile-menu.open{display:block;}
-.mobile-menu a{display:block;padding:16px 24px;color:var(--gray);font-size:.9rem;font-weight:500;border-bottom:1px solid var(--border);text-decoration:none;}
-.mobile-menu a:hover{color:var(--black);}
+.mobile-menu a{display:block;padding:16px 24px;color:var(--dim);font-size:.9rem;font-weight:500;border-bottom:1px solid rgba(255,255,255,.04);text-decoration:none;transition:color .2s;}
+.mobile-menu a:hover{color:var(--white);}
 
-/* HERO */
-.hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding:0 3rem;padding-top:7rem;position:relative;overflow:hidden;}
-.hero-bg-text{position:absolute;bottom:-2rem;left:-1rem;font-family:'Bebas Neue',sans-serif;font-size:28vw;color:var(--light);line-height:1;pointer-events:none;z-index:0;white-space:nowrap;letter-spacing:-.02em;}
-.hero-content{position:relative;z-index:1;display:grid;grid-template-columns:1fr 440px;gap:4rem;align-items:center;padding:4rem 0 2rem;}
-.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:var(--blue);color:var(--white);font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:.4rem .9rem;margin-bottom:1.5rem;}
-.hero-tag::before{content:'';width:6px;height:6px;background:var(--white);border-radius:50%;animation:pulse 1.5s ease infinite;}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.4);opacity:.6;}}
-h1{font-family:'Fraunces',serif;font-size:clamp(3.5rem,6vw,6rem);font-weight:700;line-height:1.0;letter-spacing:-.03em;margin-bottom:1.5rem;}
-h1 em{font-style:italic;font-weight:300;color:var(--gray);}
-.hero-desc{font-size:1.05rem;color:var(--gray);line-height:1.7;max-width:480px;margin-bottom:2.5rem;}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+/* ── HERO ── */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;}
 
-/* BUTTONS */
-.btn-primary{background:var(--black);color:var(--white);border:none;padding:1rem 2rem;font-family:'Instrument Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:none;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;transition:background .2s,transform .15s;position:relative;overflow:hidden;}
-.btn-primary::after{content:'';position:absolute;inset:0;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;z-index:0;}
-.btn-primary:hover::after{transform:scaleX(1);}
-.btn-primary:hover{color:var(--white);}
-.btn-primary span{position:relative;z-index:1;}
-.btn-outline{background:transparent;color:var(--black);border:1.5px solid var(--black);padding:1rem 2rem;font-family:'Instrument Sans',sans-serif;font-size:.9rem;font-weight:500;cursor:none;text-decoration:none;transition:all .2s;}
-.btn-outline:hover{background:var(--black);color:var(--white);}
+/* 3D rotating grid */
+.hero-grid{position:absolute;inset:0;perspective:800px;}
+.grid-plane{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(37,99,235,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(37,99,235,.08) 1px,transparent 1px);
+  background-size:60px 60px;
+  transform:rotateX(60deg) translateZ(-100px) scale(2.5);
+  transform-origin:center bottom;
+  animation:grid-drift 20s linear infinite;
+}
+@keyframes grid-drift{from{background-position:0 0}to{background-position:0 60px}}
 
-/* HERO RIGHT CARD */
-.hero-card{background:var(--black);color:var(--white);padding:2rem;position:relative;}
-.hero-card::before{content:'';position:absolute;inset:8px;border:1px solid rgba(255,255,255,.1);pointer-events:none;}
-.card-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1.5rem;}
-.card-icon{font-size:3rem;margin-bottom:1rem;display:block;}
-.card-headline{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;line-height:1.1;margin-bottom:.8rem;color:var(--white);}
-.card-headline em{font-style:italic;font-weight:300;color:rgba(255,255,255,.6);}
-.card-features{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-bottom:2rem;}
-.card-features li{display:flex;align-items:center;gap:.7rem;font-size:.85rem;color:rgba(255,255,255,.8);}
-.card-features li::before{content:'✓';color:var(--blue);font-weight:700;font-size:.8rem;flex-shrink:0;}
-.card-cta{display:block;background:var(--blue);color:var(--white);text-align:center;padding:.9rem;font-weight:700;font-size:.85rem;text-decoration:none;letter-spacing:.05em;transition:background .2s;}
-.card-cta:hover{background:var(--blue-dark);}
+/* Floating orbs */
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:orb-float 12s ease-in-out infinite;}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,.25),transparent 70%);top:-200px;right:-100px;animation-delay:0s;}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(6,182,212,.15),transparent 70%);bottom:-100px;left:-50px;animation-delay:-5s;}
+.orb3{width:300px;height:300px;background:radial-gradient(circle,rgba(56,189,248,.1),transparent 70%);top:40%;right:20%;animation-delay:-9s;}
+@keyframes orb-float{0%,100%{transform:translateY(0) scale(1)}33%{transform:translateY(-30px) scale(1.04)}66%{transform:translateY(20px) scale(.97)}}
 
-/* TICKER */
-.ticker{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.9rem 0;overflow:hidden;background:var(--blue);position:relative;z-index:1;}
-.ticker-track{display:flex;gap:0;animation:ticker 22s linear infinite;white-space:nowrap;}
+/* Scan lines */
+.scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(4,5,10,.15) 3px,rgba(4,5,10,.15) 4px);pointer-events:none;z-index:2;}
+
+.hero-inner{position:relative;z-index:3;max-width:1300px;margin:0 auto;padding:0 3rem;padding-top:7rem;display:grid;grid-template-columns:1fr 420px;gap:5rem;align-items:center;}
+
+.hero-tag{display:inline-flex;align-items:center;gap:.6rem;margin-bottom:1.5rem;padding:.35rem 1rem;border:1px solid rgba(37,99,235,.4);background:rgba(37,99,235,.08);color:var(--electric);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--electric);border-radius:50%;animation:blink 1.5s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+h1.hero-h1{font-family:'Syne',sans-serif;font-size:clamp(3.2rem,6vw,6rem);font-weight:800;line-height:.95;letter-spacing:-.03em;margin-bottom:1.8rem;}
+.h1-line1{display:block;color:var(--white);}
+.h1-line2{display:block;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.3);font-style:italic;font-family:'Playfair Display',serif;font-weight:400;}
+.h1-line3{display:block;background:linear-gradient(135deg,var(--electric),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+.hero-desc{font-size:1rem;color:var(--dim);line-height:1.8;max-width:460px;margin-bottom:2.5rem;font-weight:300;}
+
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem;}
+.btn-primary{display:inline-flex;align-items:center;gap:.7rem;background:var(--blue);color:var(--white);padding:1rem 2rem;font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:none;cursor:none;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,.15));opacity:0;transition:opacity .3s;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(37,99,235,.5);}
+.btn-primary:hover::before{opacity:1;}
+.btn-ghost{display:inline-flex;align-items:center;gap:.7rem;background:transparent;color:var(--white);padding:1rem 2rem;font-family:'Syne',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,.2);cursor:none;transition:all .2s;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);}
+.btn-ghost:hover{border-color:var(--electric);color:var(--electric);background:rgba(56,189,248,.06);}
+
+.hero-stats{display:flex;gap:2.5rem;}
+.hstat{display:flex;flex-direction:column;position:relative;padding-left:1rem;}
+.hstat::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:2px;background:linear-gradient(to bottom,var(--blue),var(--cyan));}
+.hstat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white);line-height:1;}
+.hstat-label{font-size:.68rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-top:3px;}
+
+/* Hero card */
+.hero-card{background:rgba(255,255,255,.03);border:1px solid rgba(37,99,235,.25);padding:2.5rem;position:relative;overflow:hidden;backdrop-filter:blur(10px);}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),var(--cyan),transparent);}
+.hero-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(37,99,235,.12),transparent 60%);pointer-events:none;}
+.card-corner{position:absolute;width:16px;height:16px;border-color:var(--electric);border-style:solid;}
+.card-corner.tl{top:8px;left:8px;border-width:1px 0 0 1px;}
+.card-corner.tr{top:8px;right:8px;border-width:1px 1px 0 0;}
+.card-corner.bl{bottom:8px;left:8px;border-width:0 0 1px 1px;}
+.card-corner.br{bottom:8px;right:8px;border-width:0 1px 1px 0;}
+.card-label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--electric);margin-bottom:1.5rem;font-weight:600;}
+.card-icon{font-size:2.5rem;margin-bottom:1rem;display:block;}
+.card-headline{font-family:'Playfair Display',serif;font-size:1.7rem;line-height:1.2;margin-bottom:1.5rem;color:var(--white);}
+.card-headline em{font-style:italic;color:var(--dim);font-weight:400;}
+.card-features{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:2rem;}
+.card-features li{display:flex;align-items:center;gap:.8rem;font-size:.85rem;color:rgba(255,255,255,.75);}
+.card-features li::before{content:'';width:6px;height:6px;background:var(--electric);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
+.card-cta{display:block;text-align:center;padding:.9rem;background:linear-gradient(135deg,var(--blue),var(--cyan));color:var(--white);font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:opacity .2s,transform .2s;}
+.card-cta:hover{opacity:.9;transform:translateY(-1px);}
+
+/* ── TICKER ── */
+.ticker{padding:.8rem 0;overflow:hidden;background:linear-gradient(135deg,var(--blue2),var(--blue));position:relative;border-top:1px solid rgba(56,189,248,.3);border-bottom:1px solid rgba(56,189,248,.3);}
+.ticker-track{display:flex;animation:ticker 25s linear infinite;white-space:nowrap;}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ticker-item{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.15em;padding:0 2.5rem;color:var(--white);display:flex;align-items:center;gap:1rem;}
-.ticker-dot{width:5px;height:5px;background:var(--white);border-radius:50%;opacity:.4;}
+.ticker-item{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:0 2.5rem;color:var(--white);display:flex;align-items:center;gap:1rem;}
+.ticker-dot{width:4px;height:4px;background:var(--electric);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}
 
-/* SOCIAL PROOF */
-.social-proof{padding:1.5rem 3rem;display:flex;align-items:center;gap:3rem;border-bottom:1px solid var(--border);flex-wrap:wrap;}
-.proof-stat{display:flex;flex-direction:column;gap:.2rem;}
-.proof-num{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;line-height:1;}
-.proof-label{font-size:.75rem;color:var(--gray);letter-spacing:.05em;}
-.proof-divider{width:1px;height:40px;background:var(--border);}
-.proof-reviews{display:flex;align-items:center;gap:.8rem;margin-left:auto;}
-.stars{color:#f59e0b;font-size:.9rem;letter-spacing:.05em;}
-.review-text{font-size:.8rem;color:var(--gray);font-style:italic;max-width:240px;}
+/* ── PROOF STRIP ── */
+.proof-strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(37,99,235,.15);background:rgba(8,12,22,.8);}
+.proof-item{padding:2rem 1.5rem;text-align:center;border-right:1px solid rgba(37,99,235,.1);position:relative;overflow:hidden;transition:background .3s;}
+.proof-item:last-child{border-right:none;}
+.proof-item:hover{background:rgba(37,99,235,.06);}
+.proof-item::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent);transform:scaleX(0);transition:transform .4s;}
+.proof-item:hover::before{transform:scaleX(1);}
+.proof-num{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;background:linear-gradient(135deg,var(--white),var(--electric));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:.3rem;}
+.proof-label{font-size:.72rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;font-weight:500;}
 
-/* BEFORE/AFTER SECTION */
-.ba-section{padding:6rem 3rem;background:var(--light);}
-.section-label{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gray);margin-bottom:1rem;font-weight:600;}
-.section-title{font-family:'Fraunces',serif;font-size:clamp(2.5rem,4vw,3.5rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:3rem;}
-.section-title em{font-style:italic;font-weight:300;}
-.ba-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--black);}
-.ba-card{position:relative;overflow:hidden;background:var(--white);}
-.ba-img{width:100%;height:340px;object-fit:cover;display:block;transition:transform .6s ease;filter:brightness(.9) contrast(1.05);}
-.ba-card:hover .ba-img{transform:scale(1.04);}
-.ba-label{position:absolute;top:16px;left:16px;background:var(--black);color:var(--white);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;padding:.35rem .8rem;font-weight:600;}
-.ba-label.after{background:var(--blue);}
-.ba-caption{padding:1.4rem 1.6rem;border-top:1px solid var(--border);}
-.ba-caption-title{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;margin-bottom:.3rem;}
-.ba-caption-sub{font-size:.8rem;color:var(--gray);}
+/* ── SECTION SHARED ── */
+.section{padding:7rem 3rem;}
+.section-wrap{max-width:1300px;margin:0 auto;}
+.eyebrow{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;}
+.eyebrow-line{width:24px;height:1px;background:var(--blue);}
+.eyebrow span{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--electric);font-weight:600;}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,4.5vw,4rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.2rem;}
+.section-title em{font-style:italic;font-family:'Playfair Display',serif;font-weight:400;color:var(--dim);}
+.section-sub{font-size:.95rem;color:var(--dim);max-width:540px;line-height:1.75;font-weight:300;}
 
-/* HOW IT WORKS */
-.section{padding:6rem 3rem;}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid var(--black);}
-.step{padding:2.5rem;border-right:1.5px solid var(--black);position:relative;transition:background .2s;}
-.step:last-child{border-right:none;}
-.step:hover{background:var(--blue);color:var(--white);}
-.step-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;line-height:1;color:var(--light);margin-bottom:1rem;transition:color .2s;}
-.step:hover .step-num{color:rgba(255,255,255,.2);}
-.step-title{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;margin-bottom:.8rem;}
-.step-desc{font-size:.9rem;color:var(--gray);line-height:1.6;transition:color .2s;}
-.step:hover .step-desc{color:rgba(255,255,255,.85);}
-.step:hover .step-title{color:var(--white);}
+/* ── BEFORE/AFTER ── */
+.ba-section{background:var(--ink2);padding:7rem 3rem;position:relative;overflow:hidden;}
+.ba-section::before{content:'CLEAN';position:absolute;bottom:-2rem;right:-1rem;font-family:'Syne',sans-serif;font-size:20vw;font-weight:800;color:rgba(37,99,235,.04);pointer-events:none;line-height:1;letter-spacing:-.05em;}
+.ba-header{max-width:1300px;margin:0 auto;margin-bottom:4rem;}
+.ba-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3px;background:rgba(37,99,235,.15);}
+.ba-card{position:relative;overflow:hidden;background:var(--ink);}
+.ba-img{width:100%;height:360px;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.22,1,.36,1),filter .5s;filter:brightness(.85) saturate(.9);}
+.ba-card:hover .ba-img{transform:scale(1.05);filter:brightness(.95) saturate(1.1);}
+.ba-pill{position:absolute;top:20px;left:20px;padding:.3rem .9rem;font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;}
+.ba-pill.before{background:rgba(0,0,0,.7);color:var(--dim);border:1px solid rgba(255,255,255,.15);}
+.ba-pill.after{background:var(--blue);color:var(--white);}
+.ba-caption{padding:1.5rem 1.8rem;background:var(--ink2);border-top:1px solid rgba(37,99,235,.1);}
+.ba-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.25rem;}
+.ba-sub{font-size:.78rem;color:var(--dim);}
 
-/* SERVICES */
-.services-section{padding:6rem 3rem;background:var(--black);color:var(--white);}
-.services-section .section-label{color:rgba(255,255,255,.4);}
-.services-section .section-title{color:var(--white);}
-.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.1);}
-.svc-card{background:var(--black);padding:2.5rem;position:relative;overflow:hidden;transition:background .2s;}
-.svc-card:hover{background:#111;}
-.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--blue);transform:scaleX(0);transition:transform .4s;transform-origin:left;}
-.svc-card:hover::before{transform:scaleX(1);}
+/* ── HOW IT WORKS ── */
+.how-section{padding:7rem 3rem;background:var(--ink);}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;}
+.steps-grid::before{content:'';position:absolute;top:40px;left:calc(33.33% + 20px);right:calc(33.33% + 20px);height:1px;background:linear-gradient(90deg,var(--blue),var(--cyan));z-index:0;}
+.step-card{padding:2.5rem;border:1px solid rgba(37,99,235,.12);margin:0 8px;background:rgba(8,12,22,.6);position:relative;overflow:hidden;transition:border-color .3s,background .3s,transform .4s;}
+.step-card:hover{border-color:rgba(37,99,235,.4);background:rgba(37,99,235,.05);transform:translateY(-6px);}
+.step-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.22,1,.36,1);}
+.step-card:hover::before{transform:scaleX(1);}
+.step-num{font-family:'Syne',sans-serif;font-size:5rem;font-weight:800;line-height:1;color:rgba(37,99,235,.12);margin-bottom:1rem;transition:color .3s;}
+.step-card:hover .step-num{color:rgba(37,99,235,.25);}
+.step-title{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.8rem;color:var(--white);}
+.step-desc{font-size:.88rem;color:var(--dim);line-height:1.7;}
+.step-icon{width:44px;height:44px;background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.3);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.2rem;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:background .3s;}
+.step-card:hover .step-icon{background:rgba(37,99,235,.3);}
+
+/* ── SERVICES ── */
+.services-section{padding:7rem 3rem;background:var(--ink2);position:relative;}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(37,99,235,.08);}
+.svc-card{padding:3rem;background:var(--ink2);position:relative;overflow:hidden;transition:background .3s;}
+.svc-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at bottom right,rgba(37,99,235,.08),transparent 60%);opacity:0;transition:opacity .4s;}
+.svc-card:hover{background:rgba(13,18,34,.9);}
+.svc-card:hover::after{opacity:1;}
+.svc-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--blue),var(--cyan));transform:scaleY(0);transform-origin:top;transition:transform .5s cubic-bezier(.22,1,.36,1);}
+.svc-card:hover::before{transform:scaleY(1);}
+.svc-num{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.2em;color:var(--electric);margin-bottom:1rem;display:block;}
 .svc-icon{font-size:2.2rem;margin-bottom:1.2rem;display:block;}
-.svc-name{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;margin-bottom:.8rem;color:var(--white);}
-.svc-desc{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:1.5rem;}
-.svc-tags{display:flex;flex-wrap:wrap;gap:.5rem;}
-.svc-tag{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;font-weight:600;}
+.svc-name{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:.8rem;letter-spacing:-.01em;}
+.svc-desc{font-size:.88rem;color:var(--dim);line-height:1.75;margin-bottom:1.5rem;}
+.svc-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
+.svc-tag{padding:.25rem .7rem;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:rgba(37,99,235,.1);border:1px solid rgba(37,99,235,.2);color:var(--dim);}
 
-/* GUARANTEE */
-.guarantee{padding:5rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;border-top:1px solid var(--border);}
-.guarantee-badge{width:200px;height:200px;border-radius:50%;background:var(--blue);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.5rem;margin-bottom:2rem;animation:rotate 20s linear infinite;}
-@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.guarantee-badge-inner{animation:rotate-rev 20s linear infinite;display:flex;flex-direction:column;align-items:center;}
-@keyframes rotate-rev{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
-.badge-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;letter-spacing:.02em;color:var(--white);}
-.badge-text{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--white);}
-.guarantee-title{font-family:'Fraunces',serif;font-size:2.5rem;font-weight:700;line-height:1.1;margin-bottom:1rem;}
-.guarantee-desc{font-size:.95rem;color:var(--gray);line-height:1.7;margin-bottom:1.5rem;}
+/* ── GUARANTEE ── */
+.guarantee-section{padding:7rem 3rem;background:var(--ink);position:relative;overflow:hidden;}
+.guarantee-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 80% 50%,rgba(37,99,235,.08),transparent);}
+.guarantee-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;position:relative;z-index:1;}
+.g-badge-wrap{display:flex;justify-content:center;}
+.g-badge{width:220px;height:220px;position:relative;flex-shrink:0;}
+.g-badge-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(37,99,235,.3);animation:badge-spin 25s linear infinite;}
+.g-badge-ring2{position:absolute;inset:12px;border-radius:50%;border:1px solid rgba(6,182,212,.2);animation:badge-spin 18s linear infinite reverse;}
+.g-badge-core{position:absolute;inset:24px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 0 60px rgba(37,99,235,.4);}
+@keyframes badge-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.g-badge-num{font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;color:var(--white);line-height:1;}
+.g-badge-text{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:.2rem;}
+.g-title{font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.2rem;}
+.g-desc{font-size:.95rem;color:var(--dim);line-height:1.8;margin-bottom:2rem;}
 
-/* REVIEWS */
-.reviews-section{padding:6rem 3rem;background:var(--light);}
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
-.rcard{background:var(--white);border:1.5px solid var(--border);padding:2rem;transition:all .25s;}
-.rcard:hover{border-color:var(--black);transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.08);}
-.rcard-stars{color:#f59e0b;font-size:.9rem;margin-bottom:1rem;letter-spacing:.05em;}
-.rcard-text{font-size:.9rem;color:var(--gray);line-height:1.7;margin-bottom:1.5rem;font-style:italic;}
-.rcard-footer{display:flex;align-items:center;gap:.8rem;border-top:1px solid var(--border);padding-top:1rem;}
-.rcard-avatar{width:38px;height:38px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--white);font-size:.9rem;flex-shrink:0;}
-.rcard-name{font-size:.88rem;font-weight:600;color:var(--black);}
-.rcard-type{font-size:.72rem;color:var(--gray);}
+/* ── REVIEWS ── */
+.reviews-section{padding:7rem 3rem;background:var(--ink2);position:relative;}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:4rem;}
+.rcard{background:rgba(8,12,22,.8);border:1px solid rgba(37,99,235,.12);padding:2rem;position:relative;overflow:hidden;transition:border-color .3s,transform .4s,box-shadow .4s;}
+.rcard:hover{border-color:rgba(37,99,235,.35);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 40px rgba(37,99,235,.08);}
+.rcard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),var(--cyan),transparent);transform:scaleX(0);transition:transform .5s;}
+.rcard:hover::before{transform:scaleX(1);}
+.rcard-quote{font-family:'Playfair Display',serif;font-size:3rem;color:rgba(37,99,235,.3);line-height:1;margin-bottom:.5rem;}
+.rcard-stars{display:flex;gap:2px;margin-bottom:1rem;}
+.rstar{color:var(--gold);font-size:.9rem;}
+.rcard-text{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:1.5rem;font-style:italic;}
+.rcard-footer{display:flex;align-items:center;gap:.8rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06);}
+.rcard-av{width:36px;height:36px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;color:var(--white);clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);}
+.rcard-name{font-size:.85rem;font-weight:600;color:var(--white);}
+.rcard-type{font-size:.7rem;color:var(--dim);}
 
-/* FAQ */
-.faq-section{padding:6rem 3rem;background:var(--black);color:var(--white);}
-.faq-section .section-title{color:var(--white);margin-bottom:3rem;}
-.faq-section .section-label{color:rgba(255,255,255,.4);}
-.faq-list{max-width:700px;}
-.faq-item{border-top:1px solid rgba(255,255,255,.1);padding:1.5rem 0;}
-.faq-item:last-child{border-bottom:1px solid rgba(255,255,255,.1);}
-.faq-q{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;margin-bottom:.7rem;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
-.faq-q span{color:var(--blue);font-size:1.2rem;flex-shrink:0;}
-.faq-a{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.7;display:none;}
+/* ── FAQ ── */
+.faq-section{padding:7rem 3rem;background:var(--ink);}
+.faq-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
+.faq-list{margin-top:0;}
+.faq-item{border-top:1px solid rgba(37,99,235,.1);padding:1.4rem 0;}
+.faq-item:last-child{border-bottom:1px solid rgba(37,99,235,.1);}
+.faq-q{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;cursor:pointer;font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--white);transition:color .2s;}
+.faq-q:hover{color:var(--electric);}
+.faq-icon{color:var(--electric);font-size:1.1rem;flex-shrink:0;transition:transform .3s;}
+.faq-icon.open{transform:rotate(45deg);}
+.faq-a{font-size:.88rem;color:var(--dim);line-height:1.75;margin-top:.8rem;display:none;}
+.faq-visual{position:relative;}
+.faq-visual-card{background:rgba(37,99,235,.06);border:1px solid rgba(37,99,235,.2);padding:3rem;position:relative;overflow:hidden;}
+.faq-visual-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),var(--cyan),transparent);}
+.fq-big{font-family:'Syne',sans-serif;font-size:5rem;font-weight:800;color:rgba(37,99,235,.12);line-height:1;margin-bottom:.5rem;}
+.fq-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin-bottom:.8rem;}
+.fq-desc{font-size:.88rem;color:var(--dim);line-height:1.7;margin-bottom:2rem;}
+.fq-contact{display:flex;flex-direction:column;gap:.8rem;}
+.fq-contact-item{display:flex;align-items:center;gap:.8rem;font-size:.9rem;color:var(--white);}
+.fq-contact-icon{width:36px;height:36px;background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.3);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
 
-/* CTA */
-.cta-section{padding:8rem 3rem;text-align:center;position:relative;overflow:hidden;}
-.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at center,var(--blue) 0%,transparent 70%);opacity:.12;pointer-events:none;}
-.cta-title{font-family:'Fraunces',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:700;line-height:1.05;letter-spacing:-.03em;margin-bottom:1.5rem;position:relative;}
-.cta-title em{font-style:italic;font-weight:300;}
-.cta-sub{font-size:1rem;color:var(--gray);margin-bottom:3rem;position:relative;}
-.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;}
-.cta-note{font-size:.75rem;color:#aaa;margin-top:1.5rem;position:relative;}
+/* ── CTA ── */
+.cta-section{padding:9rem 3rem;position:relative;overflow:hidden;text-align:center;}
+.cta-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--ink2) 0%,var(--ink) 50%,var(--ink2) 100%);}
+.cta-orb{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.12),transparent 60%);top:50%;left:50%;transform:translate(-50%,-50%);animation:cta-pulse 6s ease-in-out infinite;}
+@keyframes cta-pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}50%{transform:translate(-50%,-50%) scale(1.1);opacity:1}}
+.cta-inner{position:relative;z-index:1;max-width:800px;margin:0 auto;}
+.cta-eyebrow{display:inline-flex;align-items:center;gap:.6rem;margin-bottom:1.5rem;padding:.3rem 1rem;border:1px solid rgba(37,99,235,.3);color:var(--electric);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;}
+.cta-title{font-family:'Syne',sans-serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:800;line-height:1.0;letter-spacing:-.03em;margin-bottom:1.2rem;}
+.cta-title em{font-style:italic;font-family:'Playfair Display',serif;font-weight:400;color:var(--dim);}
+.cta-sub{font-size:1rem;color:var(--dim);margin-bottom:3rem;line-height:1.7;}
+.cta-btns{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;}
+.cta-note{font-size:.75rem;color:var(--dim);margin-top:1.5rem;opacity:.6;letter-spacing:.05em;}
 
-/* FOOTER */
-footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.08em;color:var(--black);}
-.footer-logo span{color:var(--blue);}
-.footer-copy{font-size:.75rem;color:var(--gray);}
+/* ── FOOTER ── */
+footer{border-top:1px solid rgba(37,99,235,.1);padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--ink);}
+.footer-logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;letter-spacing:.04em;color:var(--white);}
+.footer-logo span{color:var(--electric);}
+.footer-copy{font-size:.75rem;color:var(--dim);}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
-.reveal.visible{opacity:1;transform:none;}
+/* ── SCROLL ANIMATIONS ── */
+/* All visible by default — JS adds .animated class to body then hides/animates */
+.a-up,.a-left,.a-right,.a-scale,.a-fade,.a-clip,.a-word{opacity:1;transform:none;}
 
-/* RESPONSIVE */
-@media(max-width:900px){
+.animated .a-up{opacity:0;transform:translateY(50px);}
+.animated .a-up.in{opacity:1;transform:none;}
+.animated .a-left{opacity:0;transform:translateX(-50px);}
+.animated .a-left.in{opacity:1;transform:none;}
+.animated .a-right{opacity:0;transform:translateX(50px);}
+.animated .a-right.in{opacity:1;transform:none;}
+.animated .a-scale{opacity:0;transform:scale(.85);}
+.animated .a-scale.in{opacity:1;transform:scale(1);}
+.animated .a-fade{opacity:0;}
+.animated .a-fade.in{opacity:1;}
+.animated .a-clip{opacity:0;clip-path:inset(0 100% 0 0);}
+.animated .a-clip.in{opacity:1;clip-path:inset(0 0% 0 0);}
+.animated .a-word{opacity:0;transform:translateY(80%) skewY(8deg);}
+.animated .a-word.in{opacity:1;transform:none;}
+
+/* Transitions */
+.a-up,.a-left,.a-right,.a-scale{transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
+.a-fade{transition:opacity 1s ease;}
+.a-clip{transition:opacity .15s,clip-path .9s cubic-bezier(.22,1,.36,1);}
+.a-word{transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);}
+
+/* Stagger grid */
+.stagger-grid{display:contents;}
+.stagger-grid>*.animated-child{opacity:1;transform:none;}
+.animated .stagger-grid>*.animated-child{opacity:0;transform:translateY(36px);}
+.animated .stagger-grid>*.animated-child.in{opacity:1;transform:none;}
+.animated .stagger-grid>*.animated-child{transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);}
+
+/* Delays */
+.d1{transition-delay:.08s!important;}
+.d2{transition-delay:.16s!important;}
+.d3{transition-delay:.24s!important;}
+.d4{transition-delay:.32s!important;}
+.d5{transition-delay:.40s!important;}
+.d6{transition-delay:.48s!important;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:3rem;}
+  .hero-card{display:none;}
+  .proof-strip{grid-template-columns:repeat(2,1fr);}
+  .guarantee-inner{grid-template-columns:1fr;gap:3rem;}
+  .faq-inner{grid-template-columns:1fr;}
+  .faq-visual{display:none;}
+  .reviews-grid{grid-template-columns:1fr 1fr;}
+  .steps-grid{grid-template-columns:1fr;gap:1rem;}
+  .steps-grid::before{display:none;}
+  .services-grid{grid-template-columns:1fr;}
+  .ba-grid{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
   nav{padding:1rem 1.5rem;}
   .nav-links{display:none;}
   .hamburger{display:flex;}
-  .hero{padding:5rem 1.5rem 2rem;}
-  .hero-content{grid-template-columns:1fr;}
-  .hero-card{display:none;}
-  .hero-bg-text{font-size:40vw;}
-  .ba-grid{grid-template-columns:1fr;}
-  .steps{grid-template-columns:1fr;}
-  .step{border-right:none;border-bottom:1.5px solid var(--black);}
-  .services-grid{grid-template-columns:1fr;}
+  .hero-inner{padding:0 1.5rem;padding-top:5rem;}
+  .section,.ba-section,.how-section,.services-section,.guarantee-section,.reviews-section,.faq-section,.cta-section{padding:5rem 1.5rem;}
+  .proof-strip{grid-template-columns:repeat(2,1fr);}
   .reviews-grid{grid-template-columns:1fr;}
-  .guarantee{grid-template-columns:1fr;gap:2rem;}
-  .section,.ba-section,.services-section,.reviews-section,.faq-section,.cta-section{padding:4rem 1.5rem;}
-  .social-proof{padding:1.5rem;gap:1.5rem;}
-  .cta-actions{flex-direction:column;align-items:center;}
+  .cta-btns{flex-direction:column;align-items:center;}
   footer{padding:1.5rem;}
+  .ba-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<div id="cur"></div>
+<div id="cur-ring"></div>
 
 <!-- NAV -->
-<nav>
+<nav id="nav">
   <a href="#" class="nav-logo">Madtown<span>Clean</span></a>
   <ul class="nav-links">
-    <li><a href="#how">How It Works</a></li>
+    <li><a href="#how">Process</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="tel:6082801271" class="nav-cta">📞 Book Now →</a></li>
+    <li><a href="tel:6082801271" class="nav-cta">Book Now →</a></li>
   </ul>
-  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
 </nav>
-<div class="mobile-menu" id="mobile-menu">
-  <a href="#how">How It Works</a>
+<div class="mobile-menu" id="mm">
+  <a href="#how">Process</a>
   <a href="#services">Services</a>
   <a href="#reviews">Reviews</a>
   <a href="#faq">FAQ</a>
-  <a href="tel:6082801271">📞 Call: (608) 280-1271</a>
+  <a href="tel:6082801271">📞 (608) 280-1271</a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg-text">CLEAN</div>
-  <div class="hero-content">
+  <div class="hero-grid"><div class="grid-plane"></div></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="scanlines"></div>
+  <div class="hero-inner">
     <div>
-      <div class="hero-tag">Madison's own cleaning crew</div>
-      <h1>Your space,<br><em>spotless and</em><br>sparkling.</h1>
-      <p class="hero-desc">Madtown Power Cleaning brings professional-grade cleaning to homes and businesses across Madison, WI. Reliable, thorough, and done right — every time.</p>
-      <div class="hero-btns">
+      <div class="hero-tag a-fade d1">Madison's Premier Cleaning Service</div>
+      <h1 class="hero-h1">
+        <span class="h1-line1 a-word d1">Your space,</span>
+        <span class="h1-line2 a-word d2">spotless &amp;</span>
+        <span class="h1-line3 a-word d3">sparkling.</span>
+      </h1>
+      <p class="hero-desc a-up d3">Madtown Power Cleaning brings elite professional cleaning to homes and businesses across Madison, WI. Reliable, thorough, and flawless — every single time.</p>
+      <div class="hero-btns a-up d4">
         <a href="tel:6082801271" class="btn-primary"><span>Book a Cleaning</span><span>→</span></a>
-        <a href="#services" class="btn-outline">See Services</a>
+        <a href="#services" class="btn-ghost">View Services</a>
+      </div>
+      <div class="hero-stats a-up d5">
+        <div class="hstat"><div class="hstat-num">200+</div><div class="hstat-label">Clients Served</div></div>
+        <div class="hstat"><div class="hstat-num">5.0★</div><div class="hstat-label">Avg Rating</div></div>
+        <div class="hstat"><div class="hstat-num">8AM–8PM</div><div class="hstat-label">Daily Hours</div></div>
       </div>
     </div>
-    <div class="hero-card">
+    <div class="hero-card a-right d3">
+      <div class="card-corner tl"></div><div class="card-corner tr"></div>
+      <div class="card-corner bl"></div><div class="card-corner br"></div>
       <div class="card-label">Why Choose Madtown</div>
       <span class="card-icon">🧹</span>
-      <div class="card-headline">Power<br><em>cleaning done</em><br>right.</div>
+      <div class="card-headline">Power cleaning<br><em>done right.</em></div>
       <ul class="card-features">
         <li>Residential &amp; commercial</li>
         <li>Deep clean specialists</li>
@@ -267,227 +415,244 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
 
 <!-- TICKER -->
 <div class="ticker">
-  <div class="ticker-track" id="tickerTrack"></div>
+  <div class="ticker-track" id="ticker"></div>
 </div>
 
-<!-- SOCIAL PROOF -->
-<div class="social-proof reveal">
-  <div class="proof-stat"><span class="proof-num">200+</span><span class="proof-label">Happy clients served</span></div>
-  <div class="proof-divider"></div>
-  <div class="proof-stat"><span class="proof-num">5★</span><span class="proof-label">Average rating</span></div>
-  <div class="proof-divider"></div>
-  <div class="proof-stat"><span class="proof-num">8AM–8PM</span><span class="proof-label">Available daily</span></div>
-  <div class="proof-divider"></div>
-  <div class="proof-reviews">
-    <div>
-      <div class="stars">★★★★★</div>
-      <div class="review-text">"My apartment looked brand new after Madtown came through. Absolutely flawless." — Jessica T., Madison</div>
-    </div>
-  </div>
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="proof-item a-up d1"><div class="proof-num">200+</div><div class="proof-label">Happy Clients</div></div>
+  <div class="proof-item a-up d2"><div class="proof-num">5.0★</div><div class="proof-label">Average Rating</div></div>
+  <div class="proof-item a-up d3"><div class="proof-num">100%</div><div class="proof-label">Satisfaction Rate</div></div>
+  <div class="proof-item a-up d4"><div class="proof-num">8AM–8PM</div><div class="proof-label">Open Daily</div></div>
 </div>
 
 <!-- BEFORE & AFTER -->
 <section class="ba-section" id="results">
-  <div class="section-label">The Results</div>
-  <div class="section-title reveal">See the <em>difference</em><br>we make.</div>
-  <div class="ba-grid reveal">
-    <div class="ba-card">
-      <img class="ba-img" src="https://images.pexels.com/photos/4107278/pexels-photo-4107278.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dirty kitchen before cleaning" loading="lazy"/>
-      <div class="ba-label">Before</div>
-      <div class="ba-caption"><div class="ba-caption-title">Kitchen Deep Clean</div><div class="ba-caption-sub">Grease, grime & buildup — removed completely</div></div>
+  <div class="ba-header">
+    <div class="eyebrow a-fade"><div class="eyebrow-line"></div><span>The Results</span></div>
+    <div class="section-title a-clip">See the <em>difference</em><br>we make.</div>
+    <p class="section-sub a-up">Real before and after — the Madtown difference is visible from the moment we finish.</p>
+  </div>
+  <div class="ba-grid">
+    <div class="ba-card a-left">
+      <img class="ba-img" src="https://images.pexels.com/photos/4107278/pexels-photo-4107278.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Before" loading="lazy"/>
+      <div class="ba-pill before">Before</div>
+      <div class="ba-caption"><div class="ba-title">Kitchen Deep Clean</div><div class="ba-sub">Grease, grime &amp; buildup — before Madtown</div></div>
     </div>
-    <div class="ba-card">
-      <img class="ba-img" src="https://images.pexels.com/photos/6195122/pexels-photo-6195122.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sparkling clean kitchen after cleaning" loading="lazy"/>
-      <div class="ba-label after">After</div>
-      <div class="ba-caption"><div class="ba-caption-title">Spotless &amp; Sanitized</div><div class="ba-caption-sub">Every surface scrubbed, disinfected &amp; gleaming</div></div>
+    <div class="ba-card a-right">
+      <img class="ba-img" src="https://images.pexels.com/photos/6195122/pexels-photo-6195122.jpeg?auto=compress&cs=tinysrgb&w=800" alt="After" loading="lazy"/>
+      <div class="ba-pill after">After</div>
+      <div class="ba-caption"><div class="ba-title">Spotless &amp; Sanitized</div><div class="ba-sub">Every surface scrubbed, disinfected &amp; gleaming</div></div>
     </div>
-    <div class="ba-card">
-      <img class="ba-img" src="https://images.pexels.com/photos/4098369/pexels-photo-4098369.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dusty office before cleaning" loading="lazy"/>
-      <div class="ba-label">Before</div>
-      <div class="ba-caption"><div class="ba-caption-title">Office Space Refresh</div><div class="ba-caption-sub">Dusty desks, dirty floors — transformed overnight</div></div>
+    <div class="ba-card a-left">
+      <img class="ba-img" src="https://images.pexels.com/photos/4098369/pexels-photo-4098369.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Before" loading="lazy"/>
+      <div class="ba-pill before">Before</div>
+      <div class="ba-caption"><div class="ba-title">Office Space</div><div class="ba-sub">Dusty, cluttered — needs the Madtown touch</div></div>
     </div>
-    <div class="ba-card">
-      <img class="ba-img" src="https://images.pexels.com/photos/7641038/pexels-photo-7641038.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Clean modern office after cleaning" loading="lazy"/>
-      <div class="ba-label after">After</div>
-      <div class="ba-caption"><div class="ba-caption-title">Professional &amp; Pristine</div><div class="ba-caption-sub">A workspace your team is proud to walk into</div></div>
+    <div class="ba-card a-right">
+      <img class="ba-img" src="https://images.pexels.com/photos/7641038/pexels-photo-7641038.jpeg?auto=compress&cs=tinysrgb&w=800" alt="After" loading="lazy"/>
+      <div class="ba-pill after">After</div>
+      <div class="ba-caption"><div class="ba-title">Professional &amp; Pristine</div><div class="ba-sub">A workspace your team is proud to walk into</div></div>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="section" id="how">
-  <div class="section-label">The Process</div>
-  <div class="section-title reveal">Simple as <em>1, 2, 3.</em></div>
-  <div class="steps reveal">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-title">Call or Text Us</div>
-      <p class="step-desc">Give us a call at (608) 280-1271 or send a text. Tell us what you need — home, office, deep clean, move-in/out — and we'll get you scheduled fast.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-title">We Show Up &amp; Get to Work</div>
-      <p class="step-desc">Our professional team arrives on time with all supplies and equipment. We clean every corner thoroughly using proven techniques and safe products.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-title">You Enjoy a Spotless Space</div>
-      <p class="step-desc">Walk through with our team when we're done. If anything isn't perfect, we fix it on the spot — no questions, no extra charge. Guaranteed.</p>
+<section class="how-section" id="how">
+  <div class="section-wrap">
+    <div class="eyebrow a-fade"><div class="eyebrow-line"></div><span>The Process</span></div>
+    <div class="section-title a-clip">Simple as <em>1, 2, 3.</em></div>
+    <div class="steps-grid" style="margin-top:3rem;">
+      <div class="step-card a-up d1">
+        <div class="step-icon">📞</div>
+        <div class="step-num">01</div>
+        <div class="step-title">Call or Text Us</div>
+        <p class="step-desc">Reach us at (608) 280-1271. Tell us what you need — home, office, deep clean, move-in/out — and we'll schedule you fast, often same week.</p>
+      </div>
+      <div class="step-card a-up d2">
+        <div class="step-icon">🧹</div>
+        <div class="step-num">02</div>
+        <div class="step-title">We Show Up &amp; Clean</div>
+        <p class="step-desc">Our professional team arrives on time with all supplies. We clean every corner thoroughly using proven techniques and eco-friendly products.</p>
+      </div>
+      <div class="step-card a-up d3">
+        <div class="step-icon">✨</div>
+        <div class="step-num">03</div>
+        <div class="step-title">Enjoy Your Space</div>
+        <p class="step-desc">Walk through when done. Anything not perfect? We fix it on the spot, no charge. 100% guaranteed — every time, no exceptions.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SERVICES -->
 <section class="services-section" id="services">
-  <div class="section-label">What We Clean</div>
-  <div class="section-title reveal">Built for <em>every space,</em><br>every need.</div>
-  <div class="services-grid reveal">
-    <div class="svc-card">
-      <span class="svc-icon">🏠</span>
-      <div class="svc-name">Residential Cleaning</div>
-      <p class="svc-desc">Your home deserves to feel fresh and welcoming. We clean kitchens, bathrooms, bedrooms, living areas, and everything in between — leaving your home spotless from top to bottom.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Kitchens</span>
-        <span class="svc-tag">Bathrooms</span>
-        <span class="svc-tag">Bedrooms</span>
-        <span class="svc-tag">Living Areas</span>
-        <span class="svc-tag">Weekly / Bi-Weekly</span>
+  <div class="section-wrap">
+    <div class="eyebrow a-fade"><div class="eyebrow-line"></div><span>What We Clean</span></div>
+    <div class="section-title a-clip">Built for <em>every space,</em><br>every need.</div>
+    <div class="services-grid" style="margin-top:3rem;">
+      <div class="svc-card a-up d1">
+        <span class="svc-num">01 / RESIDENTIAL</span>
+        <span class="svc-icon">🏠</span>
+        <div class="svc-name">Residential Cleaning</div>
+        <p class="svc-desc">Your home deserves to feel fresh and welcoming. Kitchens, bathrooms, bedrooms, living areas — we leave every inch spotless from top to bottom.</p>
+        <div class="svc-tags"><span class="svc-tag">Kitchens</span><span class="svc-tag">Bathrooms</span><span class="svc-tag">Bedrooms</span><span class="svc-tag">Weekly/Bi-Weekly</span></div>
       </div>
-    </div>
-    <div class="svc-card">
-      <span class="svc-icon">🏢</span>
-      <div class="svc-name">Office &amp; Commercial Cleaning</div>
-      <p class="svc-desc">A clean workplace boosts morale and makes a great impression. We handle offices, retail spaces, and commercial buildings — after hours so we never interrupt your business.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Office Spaces</span>
-        <span class="svc-tag">Retail</span>
-        <span class="svc-tag">After Hours</span>
-        <span class="svc-tag">Daily / Weekly</span>
+      <div class="svc-card a-up d2">
+        <span class="svc-num">02 / COMMERCIAL</span>
+        <span class="svc-icon">🏢</span>
+        <div class="svc-name">Office &amp; Commercial</div>
+        <p class="svc-desc">A clean workplace boosts morale and makes a great first impression. Offices, retail spaces, and commercial buildings — cleaned after hours to never disrupt your business.</p>
+        <div class="svc-tags"><span class="svc-tag">Office Spaces</span><span class="svc-tag">Retail</span><span class="svc-tag">After Hours</span><span class="svc-tag">Daily/Weekly</span></div>
       </div>
-    </div>
-    <div class="svc-card">
-      <span class="svc-icon">🧽</span>
-      <div class="svc-name">Deep Cleaning</div>
-      <p class="svc-desc">When a regular clean isn't enough. We go deep — inside cabinets, behind appliances, baseboards, grout lines, and every hidden corner. Perfect for spring cleans or first-time clients.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Appliances</span>
-        <span class="svc-tag">Grout &amp; Tile</span>
-        <span class="svc-tag">Baseboards</span>
-        <span class="svc-tag">Inside Cabinets</span>
+      <div class="svc-card a-up d3">
+        <span class="svc-num">03 / DEEP CLEAN</span>
+        <span class="svc-icon">🧽</span>
+        <div class="svc-name">Deep Cleaning</div>
+        <p class="svc-desc">When a regular clean isn't enough — inside cabinets, behind appliances, baseboards, grout lines, every hidden corner. Perfect for spring cleans or first-time clients.</p>
+        <div class="svc-tags"><span class="svc-tag">Appliances</span><span class="svc-tag">Grout &amp; Tile</span><span class="svc-tag">Baseboards</span><span class="svc-tag">Cabinets</span></div>
       </div>
-    </div>
-    <div class="svc-card">
-      <span class="svc-icon">📦</span>
-      <div class="svc-name">Move-In / Move-Out Cleaning</div>
-      <p class="svc-desc">Moving is stressful enough. Let us handle the cleaning. Whether you're leaving a rental or moving into a new place, we make sure every surface is clean, fresh, and deposit-ready.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Rental Turnover</span>
-        <span class="svc-tag">Deposit Ready</span>
-        <span class="svc-tag">New Home Prep</span>
-        <span class="svc-tag">Same-Day Available</span>
+      <div class="svc-card a-up d4">
+        <span class="svc-num">04 / MOVE IN/OUT</span>
+        <span class="svc-icon">📦</span>
+        <div class="svc-name">Move-In / Move-Out</div>
+        <p class="svc-desc">Moving is stressful enough. Let us handle the cleaning. Leaving a rental or moving into a new place — we make every surface clean, fresh, and deposit-ready.</p>
+        <div class="svc-tags"><span class="svc-tag">Rental Turnover</span><span class="svc-tag">Deposit Ready</span><span class="svc-tag">New Home Prep</span><span class="svc-tag">Same-Day</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- GUARANTEE -->
-<div class="guarantee">
-  <div>
-    <div class="guarantee-badge">
-      <div class="guarantee-badge-inner">
-        <span class="badge-num">100%</span>
-        <span class="badge-text">Satisfaction<br>Guaranteed</span>
+<section class="guarantee-section">
+  <div class="guarantee-inner">
+    <div class="g-badge-wrap a-scale">
+      <div class="g-badge">
+        <div class="g-badge-ring"></div>
+        <div class="g-badge-ring2"></div>
+        <div class="g-badge-core">
+          <div class="g-badge-num">100%</div>
+          <div class="g-badge-text">Satisfaction<br>Guaranteed</div>
+        </div>
       </div>
     </div>
+    <div class="a-right">
+      <div class="eyebrow a-fade"><div class="eyebrow-line"></div><span>Our Promise</span></div>
+      <div class="g-title a-clip">Not happy?<br>We'll clean it<br>again. Free.</div>
+      <p class="g-desc a-up">We stand behind every job we do. If you're not completely satisfied, call us within 24 hours and we'll come back to fix it — at no extra cost. No arguments, no hassle, no fine print.</p>
+      <a href="tel:6082801271" class="btn-primary a-up d2"><span>Book a Cleaning</span><span>→</span></a>
+    </div>
   </div>
-  <div class="reveal">
-    <div class="section-label">Our Promise</div>
-    <h2 class="guarantee-title">Not happy?<br>We'll clean it again. Free.</h2>
-    <p class="guarantee-desc">We stand behind every job we do. If you're not completely satisfied with any part of our cleaning, call us within 24 hours and we'll come back to fix it — at no extra cost. No arguments, no hassle, no fine print.</p>
-    <a href="tel:6082801271" class="btn-primary"><span>Book a Cleaning</span><span>→</span></a>
-  </div>
-</div>
+</section>
 
 <!-- REVIEWS -->
 <section class="reviews-section" id="reviews">
-  <div class="section-label">Client Love</div>
-  <div class="section-title reveal">Madison loves <em>a clean space.</em></div>
-  <div class="reviews-grid reveal">
-    <div class="rcard">
-      <div class="rcard-stars">★★★★★</div>
-      <p class="rcard-text">"I booked Madtown for a deep clean before listing my house and WOW. The kitchen looked brand new — cleaner than when I moved in 8 years ago. These folks are serious professionals!"</p>
-      <div class="rcard-footer"><div class="rcard-avatar">D</div><div><div class="rcard-name">Diane Kowalski</div><div class="rcard-type">Deep Clean · Madison, WI</div></div></div>
-    </div>
-    <div class="rcard">
-      <div class="rcard-stars">★★★★★</div>
-      <p class="rcard-text">"Our office has never looked this good. They came after hours, cleaned everything top to bottom, and my team walked in the next morning absolutely stunned. We now have a weekly contract."</p>
-      <div class="rcard-footer"><div class="rcard-avatar">M</div><div><div class="rcard-name">Marcus Reid</div><div class="rcard-type">Commercial Cleaning · Madison</div></div></div>
-    </div>
-    <div class="rcard">
-      <div class="rcard-stars">★★★★★</div>
-      <p class="rcard-text">"Used Madtown for my move-out cleaning at my old apartment. Got my full deposit back — first time that has EVER happened! Landlord was amazed. I'm telling everyone about this company."</p>
-      <div class="rcard-footer"><div class="rcard-avatar">A</div><div><div class="rcard-name">Aaliyah Brown</div><div class="rcard-type">Move-Out Clean · Madison, WI</div></div></div>
-    </div>
-    <div class="rcard">
-      <div class="rcard-stars">★★★★★</div>
-      <p class="rcard-text">"I have 3 kids and 2 dogs — my house is always a disaster. Madtown comes every two weeks and makes it look like a magazine photo every single time. They're so kind, so thorough, and so reliable."</p>
-      <div class="rcard-footer"><div class="rcard-avatar">S</div><div><div class="rcard-name">Sarah Nguyen</div><div class="rcard-type">Residential · Bi-Weekly</div></div></div>
-    </div>
-    <div class="rcard">
-      <div class="rcard-stars">★★★★★</div>
-      <p class="rcard-text">"Called them last minute for a move-in clean and they showed up the same day. The bathroom grout alone — I couldn't believe it was the same apartment. Legitimately the best cleaning service I've ever used."</p>
-      <div class="rcard-footer"><div class="rcard-avatar">T</div><div><div class="rcard-name">Tyler Hanson</div><div class="rcard-type">Move-In Clean · Madison, WI</div></div></div>
-    </div>
-    <div class="rcard">
-      <div class="rcard-stars">★★★★★</div>
-      <p class="rcard-text">"Booked a deep clean for my Airbnb property and the response from guests doubled. Everyone mentions how immaculate it is. Madtown Power Cleaning is worth every single penny — don't hesitate."</p>
-      <div class="rcard-footer"><div class="rcard-avatar">P</div><div><div class="rcard-name">Patricia Osei</div><div class="rcard-type">Deep Clean · Airbnb Host</div></div></div>
+  <div class="section-wrap">
+    <div class="eyebrow a-fade"><div class="eyebrow-line"></div><span>Client Love</span></div>
+    <div class="section-title a-clip">Madison loves <em>a clean space.</em></div>
+    <div class="reviews-grid">
+      <div class="rcard a-up d1">
+        <div class="rcard-quote">"</div>
+        <div class="rcard-stars">★★★★★</div>
+        <p class="rcard-text">I booked Madtown for a deep clean before listing my house and WOW. The kitchen looked brand new — cleaner than when I moved in 8 years ago. These folks are serious professionals!</p>
+        <div class="rcard-footer"><div class="rcard-av">D</div><div><div class="rcard-name">Diane Kowalski</div><div class="rcard-type">Deep Clean · Madison, WI</div></div></div>
+      </div>
+      <div class="rcard a-up d2">
+        <div class="rcard-quote">"</div>
+        <div class="rcard-stars">★★★★★</div>
+        <p class="rcard-text">Our office has never looked this good. They came after hours, cleaned everything top to bottom, and my team walked in the next morning absolutely stunned. We now have a weekly contract.</p>
+        <div class="rcard-footer"><div class="rcard-av">M</div><div><div class="rcard-name">Marcus Reid</div><div class="rcard-type">Commercial · Madison</div></div></div>
+      </div>
+      <div class="rcard a-up d3">
+        <div class="rcard-quote">"</div>
+        <div class="rcard-stars">★★★★★</div>
+        <p class="rcard-text">Used Madtown for my move-out cleaning. Got my full deposit back — first time that has EVER happened! Landlord was amazed. I'm telling everyone about this company.</p>
+        <div class="rcard-footer"><div class="rcard-av">A</div><div><div class="rcard-name">Aaliyah Brown</div><div class="rcard-type">Move-Out · Madison, WI</div></div></div>
+      </div>
+      <div class="rcard a-up d1">
+        <div class="rcard-quote">"</div>
+        <div class="rcard-stars">★★★★★</div>
+        <p class="rcard-text">I have 3 kids and 2 dogs — my house is always chaos. Madtown comes every two weeks and makes it look like a magazine photo every time. So kind, so thorough, so reliable.</p>
+        <div class="rcard-footer"><div class="rcard-av">S</div><div><div class="rcard-name">Sarah Nguyen</div><div class="rcard-type">Residential · Bi-Weekly</div></div></div>
+      </div>
+      <div class="rcard a-up d2">
+        <div class="rcard-quote">"</div>
+        <div class="rcard-stars">★★★★★</div>
+        <p class="rcard-text">Called them last minute for a move-in clean and they showed up same day. The bathroom grout alone — I couldn't believe it was the same apartment. Best cleaning service I've ever used.</p>
+        <div class="rcard-footer"><div class="rcard-av">T</div><div><div class="rcard-name">Tyler Hanson</div><div class="rcard-type">Move-In · Madison, WI</div></div></div>
+      </div>
+      <div class="rcard a-up d3">
+        <div class="rcard-quote">"</div>
+        <div class="rcard-stars">★★★★★</div>
+        <p class="rcard-text">Booked a deep clean for my Airbnb and the response from guests doubled. Everyone mentions how immaculate it is. Madtown Power Cleaning is worth every single penny.</p>
+        <div class="rcard-footer"><div class="rcard-av">P</div><div><div class="rcard-name">Patricia Osei</div><div class="rcard-type">Deep Clean · Airbnb Host</div></div></div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section class="faq-section" id="faq">
-  <div class="section-label">Questions</div>
-  <div class="section-title">Everything you<br><em>need to know.</em></div>
-  <div class="faq-list reveal">
-    <div class="faq-item">
-      <div class="faq-q">What areas do you serve? <span>+</span></div>
-      <div class="faq-a">We serve Madison, WI and surrounding areas including Middleton, Fitchburg, Sun Prairie, and Monona. Not sure if we cover your area? Just call us at (608) 280-1271.</div>
+  <div class="faq-inner">
+    <div>
+      <div class="eyebrow a-fade"><div class="eyebrow-line"></div><span>Questions</span></div>
+      <div class="section-title a-clip" style="margin-bottom:2.5rem;">Everything you<br><em>need to know.</em></div>
+      <div class="faq-list">
+        <div class="faq-item a-up d1">
+          <div class="faq-q">What areas do you serve? <span class="faq-icon">+</span></div>
+          <div class="faq-a">We serve Madison, WI and surrounding areas including Middleton, Fitchburg, Sun Prairie, and Monona. Not sure? Call us at (608) 280-1271.</div>
+        </div>
+        <div class="faq-item a-up d2">
+          <div class="faq-q">Do I need to provide supplies? <span class="faq-icon">+</span></div>
+          <div class="faq-a">Not at all. Our team brings everything — professional cleaning products, equipment, and supplies. All you need to do is let us in.</div>
+        </div>
+        <div class="faq-item a-up d3">
+          <div class="faq-q">How do I book? <span class="faq-icon">+</span></div>
+          <div class="faq-a">Call or text (608) 280-1271 or email madcitypowercleaning@gmail.com. We'll get you scheduled quickly, often with same-week availability.</div>
+        </div>
+        <div class="faq-item a-up d4">
+          <div class="faq-q">Are you insured? <span class="faq-icon">+</span></div>
+          <div class="faq-a">Yes — fully insured. You can trust us in your home or office with complete peace of mind.</div>
+        </div>
+        <div class="faq-item a-up d5">
+          <div class="faq-q">What if I'm not satisfied? <span class="faq-icon">+</span></div>
+          <div class="faq-a">We offer a 100% satisfaction guarantee. Call us within 24 hours and we will return to re-clean at absolutely no charge.</div>
+        </div>
+        <div class="faq-item a-up d6">
+          <div class="faq-q">What are your hours? <span class="faq-icon">+</span></div>
+          <div class="faq-a">We're available Monday through Sunday, 8:00 AM to 8:00 PM. Call or text any time during those hours.</div>
+        </div>
+      </div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q">Do I need to provide cleaning supplies? <span>+</span></div>
-      <div class="faq-a">Not at all. Our team brings everything — professional-grade cleaning products, equipment, and supplies. All you need to do is let us in.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">How do I book a cleaning? <span>+</span></div>
-      <div class="faq-a">Just call or text us at (608) 280-1271, or email us at madcitypowercleaning@gmail.com. We'll get you scheduled quickly, often with same-week availability.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Are you insured? <span>+</span></div>
-      <div class="faq-a">Yes. Madtown Power Cleaning is fully insured. You can trust us in your home or office with complete peace of mind.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">What if I'm not satisfied with the clean? <span>+</span></div>
-      <div class="faq-a">We offer a 100% satisfaction guarantee. If anything isn't up to your standard, call us within 24 hours and we will return to re-clean at absolutely no charge.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">What are your hours? <span>+</span></div>
-      <div class="faq-a">We're available Monday through Sunday, 8:00 AM to 8:00 PM. Call or text anytime during those hours to book or ask questions.</div>
+    <div class="faq-visual a-right">
+      <div class="faq-visual-card">
+        <div class="fq-big">FAQ</div>
+        <div class="fq-title">Still have questions?</div>
+        <p class="fq-desc">We're happy to answer anything. Call, text, or email — we respond fast and we're always friendly.</p>
+        <div class="fq-contact">
+          <div class="fq-contact-item"><div class="fq-contact-icon">📞</div><span>(608) 280-1271</span></div>
+          <div class="fq-contact-item"><div class="fq-contact-icon">✉️</div><span>madcitypowercleaning@gmail.com</span></div>
+          <div class="fq-contact-item"><div class="fq-contact-icon">🕐</div><span>Mon–Sun · 8AM to 8PM</span></div>
+          <div class="fq-contact-item"><div class="fq-contact-icon">📍</div><span>Madison, WI &amp; surrounding areas</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section" id="contact">
-  <div class="cta-bg"></div>
-  <div class="cta-title reveal">Ready for a<br><em>cleaner space?</em></div>
-  <p class="cta-sub reveal">Call or text us today — we're available 8AM to 8PM, 7 days a week.</p>
-  <div class="cta-actions reveal">
-    <a href="tel:6082801271" class="btn-primary"><span>📞 Call: (608) 280-1271</span><span>→</span></a>
-    <a href="mailto:madcitypowercleaning@gmail.com" class="btn-outline">✉️ Email Us</a>
+  <div class="cta-orb"></div>
+  <div class="cta-inner">
+    <div class="cta-eyebrow a-fade">Ready to get started?</div>
+    <div class="cta-title a-clip">Ready for a<br><em>cleaner space?</em></div>
+    <p class="cta-sub a-up">Call or text us today. Available 8AM to 8PM, seven days a week. Madison's most trusted cleaning crew.</p>
+    <div class="cta-btns a-up d2">
+      <a href="tel:6082801271" class="btn-primary"><span>📞 Call: (608) 280-1271</span><span>→</span></a>
+      <a href="mailto:madcitypowercleaning@gmail.com" class="btn-ghost">✉️ Email Us</a>
+    </div>
+    <p class="cta-note a-fade d3">Madison, WI · Open 8AM–8PM Daily · 100% Satisfaction Guaranteed</p>
   </div>
-  <p class="cta-note reveal">Madison, WI · Open 8AM–8PM Daily · 100% Satisfaction Guaranteed</p>
 </section>
 
 <!-- FOOTER -->
@@ -497,52 +662,67 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
 </footer>
 
 <script>
-// Cursor
-const cursor=document.getElementById('cursor');
-const ring=document.getElementById('cursorRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
-function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
-animRing();
-document.querySelectorAll('a,button,.rcard,.step,.svc-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cursor.style.width='20px';cursor.style.height='20px';ring.style.width='60px';ring.style.height='60px';});
-  el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px';ring.style.width='40px';ring.style.height='40px';});
+// ── CURSOR ──
+var cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+var mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function anim(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim);})();
+document.querySelectorAll('a,button,.rcard,.step-card,.svc-card,.proof-item,.faq-q').forEach(function(el){
+  el.addEventListener('mouseenter',function(){cur.style.width='18px';cur.style.height='18px';ring.style.width='56px';ring.style.height='56px';cur.style.background='#06b6d4';});
+  el.addEventListener('mouseleave',function(){cur.style.width='10px';cur.style.height='10px';ring.style.width='36px';ring.style.height='36px';cur.style.background='#38bdf8';});
 });
 
-// Hamburger
-const ham=document.getElementById('hamburger');
-const mm=document.getElementById('mobile-menu');
-ham.addEventListener('click',()=>mm.classList.toggle('open'));
-mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});
+// ── NAV SCROLL ──
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);
 });
 
-// Ticker
-const items=['Residential Cleaning','Office Cleaning','Deep Clean','Move-In / Move-Out','Kitchen Scrubdown','Bathroom Sanitizing','Window Cleaning','Floor Polishing','Carpet Cleaning','Post-Construction','Airbnb Turnover','Spring Cleaning'];
-const track=document.getElementById('tickerTrack');
-const doubled=[...items,...items,...items,...items];
-track.innerHTML=doubled.map(i=>`<span class="ticker-item">${i}<span class="ticker-dot"></span></span>`).join('');
+// ── HAMBURGER ──
+document.getElementById('ham').addEventListener('click',function(){document.getElementById('mm').classList.toggle('open');});
+document.querySelectorAll('#mm a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('mm').classList.remove('open');});});
 
-// Reveal
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80);});
-},{threshold:.08});
-document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+// ── SMOOTH SCROLL ──
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});
+});
 
-// FAQ
-document.querySelectorAll('.faq-a').forEach(a=>a.style.display='none');
-document.querySelectorAll('.faq-q').forEach(q=>{
-  q.addEventListener('click',()=>{
-    const a=q.nextElementSibling;
-    const open=a.style.display==='block';
-    document.querySelectorAll('.faq-a').forEach(el=>el.style.display='none');
-    document.querySelectorAll('.faq-q span').forEach(el=>el.textContent='+');
-    if(!open){a.style.display='block';q.querySelector('span').textContent='−';}
+// ── TICKER ──
+var items=['Residential Cleaning','Office Cleaning','Deep Clean','Move-In/Out','Kitchen Scrubdown','Bathroom Sanitizing','Window Cleaning','Floor Polishing','Carpet Cleaning','Post-Construction','Airbnb Turnover','Spring Cleaning'];
+var t=document.getElementById('ticker');
+var all=[...items,...items,...items,...items];
+t.innerHTML=all.map(function(i){return'<span class="ticker-item">'+i+'<span class="ticker-dot"></span></span>';}).join('');
+
+// ── FAQ ──
+document.querySelectorAll('.faq-a').forEach(function(a){a.style.display='none';});
+document.querySelectorAll('.faq-q').forEach(function(q){
+  q.addEventListener('click',function(){
+    var a=q.nextElementSibling,icon=q.querySelector('.faq-icon'),open=a.style.display==='block';
+    document.querySelectorAll('.faq-a').forEach(function(x){x.style.display='none';});
+    document.querySelectorAll('.faq-icon').forEach(function(x){x.textContent='+';x.classList.remove('open');});
+    if(!open){a.style.display='block';icon.textContent='−';icon.classList.add('open');}
   });
 });
+
+// ── ANIMATIONS ──
+// Add .animated to body so CSS hides elements, then reveal on scroll
+function initAnims(){
+  document.body.classList.add('animated');
+  var all=document.querySelectorAll('.a-up,.a-left,.a-right,.a-scale,.a-fade,.a-clip,.a-word');
+
+  // Fire everything immediately for preview + observer for scroll on deployed site
+  all.forEach(function(el,i){setTimeout(function(){el.classList.add('in');},i*55);});
+
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');obs.unobserve(en.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+  all.forEach(function(el){obs.observe(el);});
+}
+// Multiple triggers for maximum compatibility
+initAnims();
+setTimeout(initAnims,100);
+setTimeout(initAnims,500);
+document.addEventListener('DOMContentLoaded',initAnims);
+window.addEventListener('load',initAnims);
 </script>
 </body>
 </html>

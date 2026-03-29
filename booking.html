@@ -7,74 +7,177 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0d1b2e;--navy2:#1a2d4a;--gold:#c9952a;--gold2:#e8b84b;--cream:#f5f0e8;--gray:#6b7280;--err:#dc3545}
-html{overflow-x:hidden;width:100%}
-*{margin:0;padding:0;box-sizing:border-box;max-width:100%}
-body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--navy);overflow-x:hidden;width:100%}
+html,body{margin:0;padding:0;width:100%;overflow-x:hidden}
+*{box-sizing:border-box;max-width:100%}
+body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--navy)}
 img{display:block;max-width:100%;height:auto}
 
-.topbar{background:var(--navy);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+/* TOP BAR */
+.topbar{background:var(--navy);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:relative;z-index:10}
 .topbar-left{display:flex;gap:16px;font-size:13px;color:rgba(255,255,255,.85)}
 .topbar-left a{color:inherit;text-decoration:none}
 
-.navbar{background:var(--navy);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.08)}
-.logo-link{width:58px;height:58px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:6px;text-decoration:none;flex-shrink:0}
+/* NAVBAR */
+.navbar{background:rgba(13,27,46,.55);backdrop-filter:blur(8px);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,149,42,.25);position:relative;z-index:10}
+.logo-link{width:56px;height:56px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:6px;text-decoration:none;flex-shrink:0}
 .logo-link img{width:100%;height:100%;object-fit:cover}
-.back{color:rgba(255,255,255,.72);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.04em;transition:color .2s;flex-shrink:0}
+.back{color:rgba(255,255,255,.85);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.06em;transition:color .2s;flex-shrink:0}
 .back:hover{color:var(--gold)}
 
-/* HERO */
-.hero{position:relative;height:60svh;min-height:380px;max-height:580px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--navy)}
-.hero-g1{position:absolute;inset:0;background:linear-gradient(135deg,#0d1b2e 0%,#1a3a6e 40%,#0d2d5e 70%,#0d1b2e 100%);background-size:300% 300%;animation:wave 10s ease infinite}
-.hero-g2{position:absolute;inset:0;background:radial-gradient(ellipse at 25% 65%,rgba(201,149,42,.16) 0%,transparent 55%),radial-gradient(ellipse at 80% 25%,rgba(26,58,110,.5) 0%,transparent 50%);animation:pulse 14s ease-in-out infinite alternate}
-.hero-orb1{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(201,149,42,.1) 0%,transparent 70%);top:15%;left:-8%;animation:float1 12s ease-in-out infinite}
-.hero-orb2{position:absolute;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(30,80,160,.22) 0%,transparent 70%);bottom:10%;right:-6%;animation:float2 16s ease-in-out infinite}
-.yt-wrap{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2}
-#yt-player{position:absolute;top:50%;left:50%;width:max(177.78vh,100%);height:max(56.25vw,100%);min-width:100%;min-height:100%;transform:translate(-50%,-50%);border:none}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,27,46,.48) 0%,rgba(13,27,46,.1) 45%,rgba(13,27,46,.58) 100%);z-index:3}
-.hero-content{position:relative;z-index:4;text-align:center;padding:0 22px;width:100%}
-.hlabel{color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:18px;opacity:0;animation:up .7s .2s forwards}
-.hlabel::before,.hlabel::after{content:'';height:1px;width:32px;background:var(--gold);flex-shrink:0}
-.hero-content h1{font-family:'Playfair Display',serif;font-size:clamp(30px,8vw,58px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:14px;opacity:0;animation:up .8s .4s forwards}
-.hero-content p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(255,255,255,.88);max-width:500px;margin:0 auto;line-height:1.6;opacity:0;animation:up .8s .6s forwards}
+/* ── FULL PAGE VIDEO HERO ── */
+.page-hero{
+  position:relative;
+  width:100%;
+  /* Full viewport height minus topbar+navbar (~88px) */
+  height:calc(100vh - 88px);
+  min-height:500px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--navy);
+}
 
-/* FORM */
-.form-wrap{padding:52px 20px 72px;max-width:640px;margin:0 auto}
-.form-card{background:#fff;border-radius:14px;box-shadow:0 6px 40px rgba(0,0,0,.11);overflow:hidden;opacity:0;transform:translateY(36px);animation:up .9s .8s forwards}
-.form-head{background:var(--navy);padding:24px 28px;border-bottom:3px solid var(--gold)}
-.form-head h2{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:#fff;margin-bottom:3px}
-.form-head p{color:rgba(255,255,255,.55);font-size:13px}
-.form-body{padding:28px}
-.fgroup{margin-bottom:22px}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
-@media(max-width:460px){.frow{grid-template-columns:1fr}}
-label{display:block;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--navy);margin-bottom:7px}
+/* YouTube iframe — always fills the container edge-to-edge */
+.yt-bg{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  z-index:0;
+}
+/* The trick: make the iframe big enough to cover any viewport aspect ratio */
+.yt-bg iframe{
+  position:absolute;
+  top:50%;
+  left:50%;
+  /* 16:9 ratio math — whichever dimension is smaller gets scaled up */
+  width:max(100vw, 177.78vh);
+  height:max(100vh, 56.25vw);
+  transform:translate(-50%,-50%);
+  border:0;
+  pointer-events:none;
+  opacity:.75;
+}
+
+/* Animated gradient fallback visible while/if video loads */
+.yt-fallback{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,#0d1b2e 0%,#1a3a6e 45%,#0d2d5e 75%,#0d1b2e 100%);
+  background-size:300% 300%;
+  animation:bgwave 10s ease infinite;
+  z-index:0;
+}
+@keyframes bgwave{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+/* Dark overlay so text + form stay readable */
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(8,18,34,.55);
+  z-index:1;
+}
+
+/* Content sits on top of video */
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:900px;
+  padding:0 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* Hero text */
+.hero-text{text-align:center;margin-bottom:40px}
+.hlabel{color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;opacity:0;animation:up .7s .2s forwards}
+.hlabel::before,.hlabel::after{content:'';height:1px;width:32px;background:var(--gold);flex-shrink:0}
+.hero-text h1{font-family:'Playfair Display',serif;font-size:clamp(32px,6vw,64px);font-weight:900;color:#fff;line-height:1.05;margin-bottom:12px;opacity:0;animation:up .8s .4s forwards}
+.hero-text p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.85);line-height:1.6;opacity:0;animation:up .8s .6s forwards}
+
+/* ── FORM CARD overlaid on video ── */
+.form-card{
+  width:100%;
+  max-width:620px;
+  background:rgba(13,27,46,.82);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(201,149,42,.35);
+  border-radius:16px;
+  overflow:hidden;
+  opacity:0;
+  animation:up .9s .7s forwards;
+}
+.form-head{
+  background:rgba(255,255,255,.07);
+  padding:20px 28px;
+  border-bottom:2px solid var(--gold);
+}
+.form-head h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:3px}
+.form-head p{color:rgba(255,255,255,.5);font-size:13px}
+.form-body{padding:24px 28px;max-height:55vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--gold) rgba(255,255,255,.1)}
+.form-body::-webkit-scrollbar{width:3px}
+.form-body::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* Form elements — dark theme */
+.fgroup{margin-bottom:18px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+@media(max-width:480px){.frow{grid-template-columns:1fr}}
+label{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px}
 label .req{color:var(--gold)}
-input,select,textarea{width:100%;padding:12px 14px;border:1.5px solid rgba(13,27,46,.16);border-radius:8px;font-family:'Montserrat',sans-serif;font-size:14px;color:var(--navy);background:var(--cream);outline:none;transition:all .25s;-webkit-appearance:none;appearance:none}
-input:focus,select:focus,textarea:focus{border-color:var(--gold);background:#fff;box-shadow:0 0 0 3px rgba(201,149,42,.13)}
-input::placeholder,textarea::placeholder{color:rgba(13,27,46,.32)}
-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9952a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:38px;cursor:pointer}
-textarea{resize:vertical;min-height:90px}
-.ferr{color:var(--err);font-size:12px;margin-top:4px;display:none}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-.chip{padding:7px 15px;border:1.5px solid rgba(13,27,46,.18);border-radius:28px;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;background:var(--cream);user-select:none;-webkit-user-select:none}
-.chip:hover{border-color:var(--gold)}
+input,select,textarea{
+  width:100%;padding:11px 14px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:8px;
+  font-family:'Montserrat',sans-serif;font-size:14px;
+  color:#fff;background:rgba(255,255,255,.08);
+  outline:none;transition:all .25s;
+  -webkit-appearance:none;appearance:none;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);background:rgba(255,255,255,.13);box-shadow:0 0 0 3px rgba(201,149,42,.18)}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.3)}
+select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9952a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 13px center;padding-right:38px;cursor:pointer;
+}
+select option{background:var(--navy);color:#fff}
+textarea{resize:vertical;min-height:70px}
+.ferr{color:#ff6b6b;font-size:11px;margin-top:3px;display:none}
+
+/* Chips */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px}
+.chip{padding:6px 14px;border:1px solid rgba(255,255,255,.2);border-radius:24px;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);user-select:none;-webkit-user-select:none}
+.chip:hover{border-color:var(--gold);color:var(--gold)}
 .chip.sel{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
-.fdiv{height:1px;background:rgba(13,27,46,.09);margin:24px 0}
-.fsect{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:18px;display:flex;align-items:center;gap:9px}
-.fsect::after{content:'';flex:1;height:1px;background:rgba(13,27,46,.09)}
-.btn-submit{width:100%;background:var(--gold);color:var(--navy);font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:17px 28px;border-radius:30px;border:none;cursor:pointer;transition:all .3s;margin-top:6px}
-.btn-submit:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,149,42,.4)}
-.privacy{text-align:center;color:var(--gray);font-size:12px;margin-top:14px;line-height:1.5}
+
+.fdiv{height:1px;background:rgba(255,255,255,.1);margin:18px 0}
+.fsect{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.fsect::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.1)}
+
+/* Submit button */
+.btn-submit{
+  width:100%;background:var(--gold);color:var(--navy);
+  font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.1em;text-transform:uppercase;padding:15px 28px;
+  border-radius:30px;border:none;cursor:pointer;transition:all .3s;margin-top:4px;
+}
+.btn-submit:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,149,42,.5)}
+
+.privacy{text-align:center;color:rgba(255,255,255,.4);font-size:11px;margin-top:12px;line-height:1.5}
 .privacy span{color:var(--gold)}
 
-.success{display:none;text-align:center;padding:44px 28px}
-.success-icon{width:76px;height:76px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 20px}
-.success h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin-bottom:10px}
-.success p{color:var(--gray);font-size:14px;line-height:1.6;margin-bottom:10px}
-.btn-back{background:var(--navy);color:#fff;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:13px 28px;border-radius:30px;text-decoration:none;display:inline-block;transition:all .3s;margin-top:16px}
-.btn-back:hover{background:var(--navy2)}
+/* Success */
+.success{display:none;text-align:center;padding:40px 28px}
+.success-icon{width:70px;height:70px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 18px}
+.success h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:10px}
+.success p{color:rgba(255,255,255,.7);font-size:14px;line-height:1.6;margin-bottom:8px}
+.btn-back{background:var(--gold);color:var(--navy);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 28px;border-radius:30px;text-decoration:none;display:inline-block;transition:all .3s;margin-top:14px}
+.btn-back:hover{background:var(--gold2)}
 
-.info-wrap{max-width:640px;margin:0 auto;padding:0 20px 72px;display:flex;flex-direction:column;gap:14px}
+/* INFO + FOOTER below the hero */
+.info-wrap{max-width:700px;margin:0 auto;padding:52px 20px 60px;display:flex;flex-direction:column;gap:14px}
 .icard{background:var(--navy);border-radius:11px;padding:18px 22px;display:flex;align-items:flex-start;gap:14px;opacity:0;transform:translateX(-36px);transition:opacity .7s ease,transform .7s ease}
 .icard.vis{opacity:1;transform:none}
 .icard:nth-child(2){transition-delay:.15s}
@@ -84,24 +187,21 @@ textarea{resize:vertical;min-height:90px}
 .icard p{color:rgba(255,255,255,.6);font-size:13px;line-height:1.5}
 .icard a{color:var(--gold);text-decoration:none}
 
-footer{background:var(--navy);padding:36px 20px;text-align:center;border-top:1px solid rgba(255,255,255,.07)}
+footer{background:var(--navy);padding:32px 20px;text-align:center;border-top:1px solid rgba(255,255,255,.07)}
 .foot-links{color:rgba(255,255,255,.6);font-size:13px;margin-bottom:8px}
 .foot-links a{color:inherit;text-decoration:none;transition:color .2s}
 .foot-links a:hover{color:var(--gold)}
 .foot-copy{color:rgba(255,255,255,.28);font-size:11px}
 
-.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(13,27,46,.25);border-top-color:var(--navy);border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle;margin-right:7px}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(13,27,46,.3);border-top-color:var(--navy);border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle;margin-right:7px}
 
 @keyframes up{to{opacity:1;transform:translateY(0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes wave{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes pulse{0%{opacity:.7;transform:scale(1)}100%{opacity:1;transform:scale(1.06)}}
-@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(35px,-28px)}}
-@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,-22px)}}
 </style>
 </head>
 <body>
 
+<!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-left">
     <span>&#128205; Madison, WI</span>
@@ -110,6 +210,7 @@ footer{background:var(--navy);padding:36px 20px;text-align:center;border-top:1px
   <a href="tel:6082801271" style="color:rgba(255,255,255,.7);font-size:13px;text-decoration:none">Call to book directly</a>
 </div>
 
+<!-- NAVBAR -->
 <nav class="navbar">
   <a href="index.html" class="logo-link">
     <img src="data:image/jpeg;base64,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U+JrpMzcrBeC+SZBZzzjXDdvPHDfWCVbZum36DXOCs3WKpAlJf3KTtPizfMCJGJHfGYyI/GrcFwz4AkrP1jJ4fFEfuI/u39Vx71v0/7n+z1lVuDdwU6i1OoyFete4HUlne1OUolSEzHkmA4c97OUczWnQuaSB1WoPBysG3qRV6hdtl0iHVpRs9KwapVvY8V0FxIDi0sONQevRfsbwnuO0qPW6zdVxyVtyctJvhykeVnocw6sPdoIEFsKJl0N41c46Abjw9oVWmT9d4UcPW0fhvaF1GFa8GXiT1TqDYUaViFz/sYb37Nsh2rTqfiVtntGtW3/AFSvHrO5muv/AF8xTUD2NOxpbvoUYwojofewXczH4OOZp6tOMg9QvADleWYl4snNxZSOAIsF7oTwHB2HNODqNDqNwvEBhe58+e6q6Y81ButhuiIjSo4nOFQPNRyCIioxnVBMItHHLhRuM6oIdlBstkDcLGEI7tDUhaAwsjQ5TmKDR2KwhdnqiAiIgmSmuVVD4oioplUFFMaocaghTKqESbDAULWu98xp+Ja0UV01s+95enghAOMgaeSuNFE0bQsY73zGu9YygYwNwGNA8AFUTRtktbnOBlCARgjI8FrI6hRE2Na1owGgZ3CCGxp5gxufHlCo06JlToeKU5WfwbM+PKFRpnAxnXRFQcIicrdPRHjsrjGuNfHGqZVLgQqMkaaNA+JTA5ubGvirlEWELW83NyjPjjVXTwA9SImlQtac5a053yN1C1rvfMa71gFa0TI6lTUG2Q1owA0b5WsDm5sDO2U0V3VGcDfAydz4q4A2AHxJoiG0DWN961o9QTu2OJzDYSepaFfiV2KaNpjAREUZFcnGFEQEREAqZVUygqKZ8kyhtVAmUzohCqHdayohMJhVEQEREBDsiIM4RaRE0ytLOyoQhUREURFCcIKimdVUBERAREQEREBERATREQERENihGqqIA2REQEQIgIiICIplE2qKakqooRlERAUKmURNiJhXCIi0FlEWOjSIiKIiICIiAidUQEREBNEUx5oKimFUBERAwEREBERAREQMFFtvvVknLkEREQEREBFDlBlEVERFMpooQmEFREQEREBERAREQEREEwmFUQEREArOVpTbdEVBuqVWnG6KyipxnRRAREQEREBERAREQERXTxQOigOCteiRhZ6qgiHdFAQ6nKIgIiIGSETBxlEBERAREQEREBFS3CiAiIgIiICIiAiIgIiICIiAiIgIiICIN9UQVREQERXIxsginXVVEBERAROqICIiAiDQ7KnGdEEREQFpqyqHHCA4YKipOSFS3wQZRa5dN1CCEFadMKHdUYwsoCItZHJhBlERBWjJQjCB2E5igmSiIBlAREQEREBE6IgIiIJlU7KY1VQQKoiAiIgHZZ1WshTPkiA2VUGyvVFhRvqodCr0UQFrQeayiAiYyiAih30QIm1RERRERARMqndBOqpAxoVEQEREFbjOq3nC8aIPJlRx0Wc4UVBERQFQ3RRMoCIiAqBlRUb7ILylAMA5QnIWUFKiIgIiICIiAiIgIiICIiAoUKiJKgJhRaQgRDsoNkVrKDGdVEQEREFacFCQVEQExhFM6oKiLO6IuQqsrWyGxFMlMlDaoiIoiIgIiICIiAiIgIiICIiAg3REFJyoMZ1REBERAREQEG+qIgpxnRREQERZwUGkUGyqAiaogYCIiAgREH//2Q==" alt="Mad City Power Cleaning Services">
@@ -117,154 +218,162 @@ footer{background:var(--navy);padding:36px 20px;text-align:center;border-top:1px
   <a href="index.html" class="back">&#8592; Back to Home</a>
 </nav>
 
-<div class="hero">
-  <div class="hero-g1"></div>
-  <div class="hero-g2"></div>
-  <div class="hero-orb1"></div>
-  <div class="hero-orb2"></div>
-  <div class="yt-wrap"><div id="yt-player"></div></div>
+<!-- FULL PAGE VIDEO + FORM -->
+<div class="page-hero">
+  <!-- Gradient fallback (always visible) -->
+  <div class="yt-fallback"></div>
+
+  <!-- YouTube video background -->
+  <div class="yt-bg">
+    <div id="yt-player"></div>
+  </div>
+
+  <!-- Dark overlay -->
   <div class="hero-overlay"></div>
+
+  <!-- Hero text + form stacked -->
   <div class="hero-content">
-    <div class="hlabel">Scheduling</div>
-    <h1>Book Your Cleaning</h1>
-    <p>Fill out the form below and I'll reach out within 24 hours to confirm your appointment.</p>
+    <div class="hero-text">
+      <div class="hlabel">Scheduling</div>
+      <h1>Book Your Cleaning</h1>
+      <p>Fill out the form below and I'll reach out within 24 hours to confirm your appointment.</p>
+    </div>
+
+    <!-- FORM CARD overlaid on video -->
+    <div class="form-card">
+      <div class="form-head">
+        <h2>Request an Appointment</h2>
+        <p>Mad City Power Cleaning Services &middot; Madison, WI</p>
+      </div>
+      <div class="form-body" id="formBody">
+        <form id="bForm" novalidate>
+          <div class="fsect">Your Information</div>
+          <div class="frow">
+            <div class="fgroup">
+              <label>First Name <span class="req">*</span></label>
+              <input type="text" id="fn" placeholder="Jane" required>
+              <div class="ferr" id="fnE">Please enter your first name.</div>
+            </div>
+            <div class="fgroup">
+              <label>Last Name <span class="req">*</span></label>
+              <input type="text" id="ln" placeholder="Smith" required>
+              <div class="ferr" id="lnE">Please enter your last name.</div>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="fgroup">
+              <label>Phone <span class="req">*</span></label>
+              <input type="tel" id="ph" placeholder="(608) 555-0000" required>
+              <div class="ferr" id="phE">Please enter a valid phone number.</div>
+            </div>
+            <div class="fgroup">
+              <label>Email</label>
+              <input type="email" id="em" placeholder="jane@email.com">
+              <div class="ferr" id="emE">Please enter a valid email.</div>
+            </div>
+          </div>
+          <div class="fdiv"></div>
+          <div class="fsect">Service Details</div>
+          <div class="fgroup">
+            <label>Service Type <span class="req">*</span></label>
+            <div class="chips">
+              <div class="chip" onclick="pickChip(this)">One-Time Cleaning</div>
+              <div class="chip" onclick="pickChip(this)">Deep Cleaning</div>
+              <div class="chip" onclick="pickChip(this)">Move-In Cleaning</div>
+              <div class="chip" onclick="pickChip(this)">Office Cleaning</div>
+              <div class="chip" onclick="pickChip(this)">Regular Cleaning</div>
+              <div class="chip" onclick="pickChip(this)">First-Time Cleaning</div>
+              <div class="chip" onclick="pickChip(this)">Other</div>
+            </div>
+            <div class="ferr" id="svcE">Please select a service type.</div>
+          </div>
+          <div class="frow">
+            <div class="fgroup">
+              <label>Property Type <span class="req">*</span></label>
+              <select id="prop" required>
+                <option value="">Select type...</option>
+                <option>Residential Home</option>
+                <option>Apartment / Condo</option>
+                <option>Office / Commercial</option>
+                <option>Other</option>
+              </select>
+              <div class="ferr" id="propE">Please select a property type.</div>
+            </div>
+            <div class="fgroup">
+              <label>Frequency</label>
+              <select id="freq">
+                <option value="">Select...</option>
+                <option>One-Time</option>
+                <option>Weekly</option>
+                <option>Bi-Weekly</option>
+                <option>Monthly</option>
+                <option>As Needed</option>
+              </select>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label>City / Area <span class="req">*</span></label>
+            <select id="city" required>
+              <option value="">Select your city...</option>
+              <option>Madison</option><option>Sun Prairie</option><option>Columbus</option>
+              <option>Cross Plains</option><option>DeForest</option><option>Dunn</option>
+              <option>Edgerton</option><option>Jefferson</option><option>Lake Mills</option>
+              <option>Lake Wisconsin</option><option>McFarland</option><option>Middleton</option>
+              <option>Monona</option><option>Oregon</option><option>Prairie du Sac</option>
+              <option>Stoughton</option><option>Verona</option><option>Windsor</option>
+              <option>Waunakee</option><option>Watertown</option><option>Addison</option>
+              <option>Milwaukee</option><option>Janesville</option>
+              <option>Other (within 30 miles)</option>
+            </select>
+            <div class="ferr" id="cityE">Please select your city.</div>
+          </div>
+          <div class="fdiv"></div>
+          <div class="fsect">Date &amp; Time</div>
+          <div class="frow">
+            <div class="fgroup">
+              <label>Preferred Date</label>
+              <input type="date" id="dt" min="">
+            </div>
+            <div class="fgroup">
+              <label>Preferred Time</label>
+              <select id="tm">
+                <option value="">Any time</option>
+                <option>Morning (8am - 12pm)</option>
+                <option>Afternoon (12pm - 4pm)</option>
+                <option>Evening (4pm - 7pm)</option>
+              </select>
+            </div>
+          </div>
+          <div class="fdiv"></div>
+          <div class="fgroup">
+            <label>Discount / Promo</label>
+            <select id="disc">
+              <option value="">No discount</option>
+              <option>First-Time Customer</option>
+              <option>Referral (friend referred me)</option>
+              <option>Leaving a Review</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label>Special Requests or Notes</label>
+            <textarea id="notes" placeholder="Any specific areas to focus on, access instructions, pets, etc."></textarea>
+          </div>
+          <button type="submit" class="btn-submit" id="subBtn">Request Booking</button>
+          <p class="privacy"><span>&#128274;</span> Your info is private. We respond within 24 hours to confirm.</p>
+        </form>
+      </div>
+      <div class="success" id="successDiv">
+        <div class="success-icon">&#10003;</div>
+        <h3>Booking Request Sent!</h3>
+        <p>Thank you! I'll contact you within 24 hours to confirm your appointment details.</p>
+        <p style="font-weight:600;color:rgba(255,255,255,.8)">Questions? Call <a href="tel:6082801271" style="color:var(--gold)">(608) 280-1271</a></p>
+        <a href="index.html" class="btn-back">&#8592; Back to Home</a>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="form-wrap">
-  <div class="form-card">
-    <div class="form-head">
-      <h2>Request an Appointment</h2>
-      <p>Mad City Power Cleaning Services &middot; Madison, WI</p>
-    </div>
-    <div class="form-body" id="formBody">
-      <form id="bForm" novalidate>
-        <div class="fsect">Your Information</div>
-        <div class="frow">
-          <div class="fgroup">
-            <label>First Name <span class="req">*</span></label>
-            <input type="text" id="fn" placeholder="Jane" required>
-            <div class="ferr" id="fnE">Please enter your first name.</div>
-          </div>
-          <div class="fgroup">
-            <label>Last Name <span class="req">*</span></label>
-            <input type="text" id="ln" placeholder="Smith" required>
-            <div class="ferr" id="lnE">Please enter your last name.</div>
-          </div>
-        </div>
-        <div class="frow">
-          <div class="fgroup">
-            <label>Phone <span class="req">*</span></label>
-            <input type="tel" id="ph" placeholder="(608) 555-0000" required>
-            <div class="ferr" id="phE">Please enter a valid phone number.</div>
-          </div>
-          <div class="fgroup">
-            <label>Email</label>
-            <input type="email" id="em" placeholder="jane@email.com">
-            <div class="ferr" id="emE">Please enter a valid email.</div>
-          </div>
-        </div>
-        <div class="fdiv"></div>
-        <div class="fsect">Service Details</div>
-        <div class="fgroup">
-          <label>Service Type <span class="req">*</span></label>
-          <div class="chips">
-            <div class="chip" onclick="pickChip(this)">One-Time Cleaning</div>
-            <div class="chip" onclick="pickChip(this)">Deep Cleaning</div>
-            <div class="chip" onclick="pickChip(this)">Move-In Cleaning</div>
-            <div class="chip" onclick="pickChip(this)">Office Cleaning</div>
-            <div class="chip" onclick="pickChip(this)">Regular Cleaning</div>
-            <div class="chip" onclick="pickChip(this)">First-Time Cleaning</div>
-            <div class="chip" onclick="pickChip(this)">Other</div>
-          </div>
-          <div class="ferr" id="svcE">Please select a service type.</div>
-        </div>
-        <div class="frow">
-          <div class="fgroup">
-            <label>Property Type <span class="req">*</span></label>
-            <select id="prop" required>
-              <option value="">Select type...</option>
-              <option>Residential Home</option>
-              <option>Apartment / Condo</option>
-              <option>Office / Commercial</option>
-              <option>Other</option>
-            </select>
-            <div class="ferr" id="propE">Please select a property type.</div>
-          </div>
-          <div class="fgroup">
-            <label>Frequency</label>
-            <select id="freq">
-              <option value="">Select...</option>
-              <option>One-Time</option>
-              <option>Weekly</option>
-              <option>Bi-Weekly</option>
-              <option>Monthly</option>
-              <option>As Needed</option>
-            </select>
-          </div>
-        </div>
-        <div class="fgroup">
-          <label>City / Area <span class="req">*</span></label>
-          <select id="city" required>
-            <option value="">Select your city...</option>
-            <option>Madison</option><option>Sun Prairie</option><option>Columbus</option>
-            <option>Cross Plains</option><option>DeForest</option><option>Dunn</option>
-            <option>Edgerton</option><option>Jefferson</option><option>Lake Mills</option>
-            <option>Lake Wisconsin</option><option>McFarland</option><option>Middleton</option>
-            <option>Monona</option><option>Oregon</option><option>Prairie du Sac</option>
-            <option>Stoughton</option><option>Verona</option><option>Windsor</option>
-            <option>Waunakee</option><option>Watertown</option><option>Addison</option>
-            <option>Milwaukee</option><option>Janesville</option>
-            <option>Other (within 30 miles)</option>
-          </select>
-          <div class="ferr" id="cityE">Please select your city.</div>
-        </div>
-        <div class="fdiv"></div>
-        <div class="fsect">Preferred Date &amp; Time</div>
-        <div class="frow">
-          <div class="fgroup">
-            <label>Preferred Date</label>
-            <input type="date" id="dt" min="">
-          </div>
-          <div class="fgroup">
-            <label>Preferred Time</label>
-            <select id="tm">
-              <option value="">Any time</option>
-              <option>Morning (8am - 12pm)</option>
-              <option>Afternoon (12pm - 4pm)</option>
-              <option>Evening (4pm - 7pm)</option>
-            </select>
-          </div>
-        </div>
-        <div class="fdiv"></div>
-        <div class="fsect">Additional Info</div>
-        <div class="fgroup">
-          <label>Discount / Promo</label>
-          <select id="disc">
-            <option value="">No discount</option>
-            <option>First-Time Customer</option>
-            <option>Referral (friend referred me)</option>
-            <option>Leaving a Review</option>
-          </select>
-        </div>
-        <div class="fgroup">
-          <label>Special Requests or Notes</label>
-          <textarea id="notes" placeholder="Any specific areas to focus on, access instructions, pets, etc."></textarea>
-        </div>
-        <button type="submit" class="btn-submit" id="subBtn">Request Booking</button>
-        <p class="privacy"><span>&#128274;</span> Your information is private and only used to contact you about your appointment. We respond within 24 hours.</p>
-      </form>
-    </div>
-    <div class="success" id="successDiv">
-      <div class="success-icon">&#10003;</div>
-      <h3>Booking Request Sent!</h3>
-      <p>Thank you! I'll contact you within 24 hours to confirm your appointment details.</p>
-      <p style="font-weight:600;color:var(--navy)">Questions? Call <a href="tel:6082801271" style="color:var(--gold)">(608) 280-1271</a></p>
-      <a href="index.html" class="btn-back">&#8592; Back to Home</a>
-    </div>
-  </div>
-</div>
-
+<!-- INFO CARDS -->
 <div class="info-wrap">
   <div class="icard" id="ic1">
     <div class="icard-icon">&#128222;</div>
@@ -305,7 +414,7 @@ document.getElementById('bForm').addEventListener('submit', function(e) {
   var ok = true;
   function chk(id, errId, cond) {
     var err = document.getElementById(errId);
-    if (cond) { err.style.display='block'; document.getElementById(id).style.borderColor='#dc3545'; ok=false; }
+    if (cond) { err.style.display='block'; document.getElementById(id).style.borderColor='#ff6b6b'; ok=false; }
     else { err.style.display='none'; document.getElementById(id).style.borderColor=''; }
   }
   chk('fn','fnE', !document.getElementById('fn').value.trim());
@@ -315,8 +424,7 @@ document.getElementById('bForm').addEventListener('submit', function(e) {
   var em = document.getElementById('em').value.trim();
   if (em && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
     document.getElementById('emE').style.display='block';
-    document.getElementById('em').style.borderColor='#dc3545';
-    ok=false;
+    document.getElementById('em').style.borderColor='#ff6b6b'; ok=false;
   } else {
     document.getElementById('emE').style.display='none';
     document.getElementById('em').style.borderColor='';
@@ -331,7 +439,6 @@ document.getElementById('bForm').addEventListener('submit', function(e) {
   setTimeout(function() {
     document.getElementById('formBody').style.display = 'none';
     document.getElementById('successDiv').style.display = 'block';
-    window.scrollTo({top:0, behavior:'smooth'});
   }, 1800);
 });
 
@@ -344,6 +451,7 @@ var obs = new IntersectionObserver(function(entries) {
 }, {threshold:.2});
 document.querySelectorAll('.icard').forEach(function(c){ obs.observe(c); });
 
+/* YouTube IFrame API — full coverage video, plays on Netlify */
 var tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
 document.head.appendChild(tag);
@@ -352,11 +460,14 @@ window.onYouTubeIframeAPIReady = function() {
     videoId: '2WhXP4QP9jM',
     playerVars: {
       autoplay:1, mute:1, loop:1, playlist:'2WhXP4QP9jM',
-      controls:0, rel:0, modestbranding:1, playsinline:1, iv_load_policy:3
+      controls:0, rel:0, modestbranding:1, playsinline:1, iv_load_policy:3,
+      disablekb:1, fs:0
     },
     events: {
       onReady: function(e){ e.target.setVolume(0); e.target.playVideo(); },
-      onStateChange: function(e){ if(e.data===0||e.data===2) e.target.playVideo(); }
+      onStateChange: function(e){
+        if (e.data === 0 || e.data === 2) e.target.playVideo();
+      }
     }
   });
 };

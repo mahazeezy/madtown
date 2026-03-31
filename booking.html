@@ -246,7 +246,9 @@ footer{background:var(--navy);padding:32px 20px;text-align:center;border-top:1px
         <p>Mad City Power Cleaning Services &middot; Madison, WI</p>
       </div>
       <div class="form-body" id="formBody">
-        <form id="bForm" novalidate>
+        <form id="bForm" name="madcity-bookings" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="madcity-bookings"/>
+          <input type="hidden" name="bot-field"/>
           <div class="fsect">Your Information</div>
           <div class="frow">
             <div class="fgroup">
@@ -381,7 +383,7 @@ footer{background:var(--navy);padding:32px 20px;text-align:center;border-top:1px
   </div>
   <div class="icard" id="ic2">
     <div class="icard-icon">&#9993;</div>
-    <div><h4>Email Us</h4><p>Send a message to <a href="mailto:madcitypowercleaning@gmail.com">madcitypowercleaning@gmail.com</a> and we'll respond promptly.</p></div>
+    <div><h4>Email Us</h4><p>Send a message to <a href="/cdn-cgi/l/email-protection#8ce1ede8efe5f8f5fce3fbe9feefe0e9ede2e5e2ebccebe1ede5e0a2efe3e1"><span class="__cf_email__" data-cfemail="e38e8287808a979a938c948691808f86828d8a8d84a3848e828a8fcd808c8e">[email&#160;protected]</span></a> and we'll respond promptly.</p></div>
   </div>
   <div class="icard" id="ic3">
     <div class="icard-icon">&#128205;</div>
@@ -393,12 +395,12 @@ footer{background:var(--navy);padding:32px 20px;text-align:center;border-top:1px
   <p class="foot-links">
     <a href="index.html">Home</a> &nbsp;&middot;&nbsp;
     <a href="tel:6082801271">(608) 280-1271</a> &nbsp;&middot;&nbsp;
-    <a href="mailto:madcitypowercleaning@gmail.com">Email Us</a>
+    <a href="/cdn-cgi/l/email-protection#432e2227202a373a332c342631202f26222d2a2d2403242e222a2f6d202c2e">Email Us</a>
   </p>
   <p class="foot-copy">&copy; 2026 Mad City Power Cleaning Services. All rights reserved.</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.getElementById('dt').min = new Date().toISOString().split('T')[0];
 
 var selSvc = '';
@@ -436,10 +438,37 @@ document.getElementById('bForm').addEventListener('submit', function(e) {
   var btn = document.getElementById('subBtn');
   btn.innerHTML = '<span class="spinner"></span>Sending...';
   btn.disabled = true;
-  setTimeout(function() {
+
+  // Collect all form data
+  var formData = new FormData();
+  formData.append('form-name', 'madcity-bookings');
+  formData.append('name', document.getElementById('fn').value.trim() + ' ' + document.getElementById('ln').value.trim());
+  formData.append('phone', document.getElementById('ph').value.trim());
+  formData.append('email', document.getElementById('em').value.trim());
+  formData.append('service', selSvc);
+  formData.append('property-type', document.getElementById('prop').value);
+  formData.append('frequency', document.getElementById('freq').value);
+  formData.append('city', document.getElementById('city').value);
+  formData.append('preferred-date', document.getElementById('dt').value);
+  formData.append('preferred-time', document.getElementById('tm').value);
+  formData.append('discount', document.getElementById('disc').value);
+  formData.append('notes', document.getElementById('notes').value.trim());
+
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(formData).toString()
+  })
+  .then(function() {
     document.getElementById('formBody').style.display = 'none';
     document.getElementById('successDiv').style.display = 'block';
-  }, 1800);
+  })
+  .catch(function(err) {
+    console.error('Submission error:', err);
+    btn.innerHTML = 'Request Booking';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again or call (608) 280-1271.');
+  });
 });
 
 document.querySelectorAll('input,select,textarea').forEach(function(el) {
@@ -460,17 +489,4 @@ window.onYouTubeIframeAPIReady = function() {
     videoId: '2WhXP4QP9jM',
     playerVars: {
       autoplay:1, mute:1, loop:1, playlist:'2WhXP4QP9jM',
-      controls:0, rel:0, modestbranding:1, playsinline:1, iv_load_policy:3,
-      disablekb:1, fs:0
-    },
-    events: {
-      onReady: function(e){ e.target.setVolume(0); e.target.playVideo(); },
-      onStateChange: function(e){
-        if (e.data === 0 || e.data === 2) e.target.playVideo();
-      }
-    }
-  });
-};
-</script>
-</body>
-</html>
+      controls:0, rel:0, 
